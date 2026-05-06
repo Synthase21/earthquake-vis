@@ -1,0 +1,48 @@
+<!-- HTML 骨架片段 -->
+<section id="project-doc" style="background-color: var(--text-main); color: var(--bg-color); padding: 4rem 2rem;">
+  <div class="doc-container" style="max-width: 800px; margin: 0 auto;">
+    <h2>项目说明文档</h2>
+    <p><em>小组成员：[成员A]、[成员B]、[成员C]</em></p>
+
+    <div class="doc-block">
+      <h3>1. 核心问题与叙事目标</h3>
+      <p>
+        本项目旨在通过“交互式数据新闻”的形式，解答以下递进式问题：<br>
+        - 基础概念：地震是如何发生与传播的？（波的物理原理）<br>
+        - 破坏评估：震级和烈度如何直观影响人类居所？<br>
+        - 数据洞察：当前全球地震的空间分布、时间规律及震级频率如何？<br>
+        - 防震减灾：面对地震，人类个体应如何避险，人类工程如何抵抗？
+      </p>
+    </div>
+
+    <div class="doc-block">
+      <h3>2. 设计决策与替代方案</h3>
+      <ul>
+        <li><strong>视觉编码：</strong>在色彩上抛弃了传统的“红黄警示色”，采用高级的灰蓝+沙金（#E8EDF2 / #C2A56D），以纪实新闻的冷峻感传递数据。将地震波统一抽象为“点击生成的同心圆”，作为贯穿全文的视觉线索。</li>
+        <li><strong>交互技术：</strong>采用了“Scrollytelling”结合按需交互（点击/拖拽/滑块）。替代方案曾考虑“完全由用户自主探索的Dashboard”，但考虑到具有科普性质的内容，线性叙事引导+关键节点交互（如拖拽小人避险）能提供更深的沉浸感。</li>
+        <li><strong>特定设计：</strong>在第一和第四章统一使用“点击产生地震波”的交互，形成首尾呼应。</li>
+      </ul>
+    </div>
+
+    <div class="doc-block">
+      <h3>3. 外部资源与数据参考</h3>
+      <ul>
+        <li><strong>数据源：</strong>USGS (过去24h/7天/30天地震数据), World-Atlas, PB2002 Plates.</li>
+        <li><strong>叙事灵感：</strong>The Washington Post (新冠模拟器), The Pudding.</li>
+        <li><strong>技术库：</strong>D3.js (v7), Vite, TopoJSON.</li>
+        <li>文案与代码辅助生成：AI (ChatGPT/Claude)</li>
+      </ul>
+    </div>
+
+    <div class="doc-block">
+      <h3>4. 开发流程与分工评述</h3>
+      <p><strong>开发耗时：</strong>整体团队耗时约 [XX] 工时。其中，[填写耗时最多的部分，如“D3与物理坐标图的动画绑定”、“地图数据的平滑重构与重绘”] 耗时最多。</p>
+      <p><strong>分工概况：</strong></p>
+      <ul>
+        <li><strong>[成员A]：</strong>项目架构、D3全量数据视图整合（章节3）、前端打包与部署。</li>
+        <li><strong>[成员B]：</strong>物理机制可视化（章节1波形生成）、震级烈度模拟交互（章节2 CSS动画绑定）。</li>
+        <li><strong>[成员C]：</strong>叙事转场文案、避险微游戏（拖拽逻辑）、防震工程特效可视化（章节4）及本文档统筹。</li>
+      </ul>
+    </div>
+  </div>
+</section>

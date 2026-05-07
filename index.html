@@ -2,12 +2,40 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>全球地震与灾害程度交互式可视化文档</title>
+    <title>地震科学可视化文档</title>
 </head>
 <body>
     <div id="app">
-        <!-- 章节 1-4 的容器将由 main.js 或 HTML 直接定义 -->
+        <h1 class="main-title">为什么地震如此可怖？我们该如何抵御？</h1>
+
+        <section class="step" id="ch1-intro">
+            <h2 class="chapter-title">第一章：震颤的根源</h2>
+            <p>地震是地球内部能量快速释放引起的震动。当地壳内部积聚的应力超过岩层的强度时，岩层会发生突然断裂或位移，这种释放的能量以波动形式向四周传播，形成了震慑人心的地震现象。作为自然界最具破坏性的力量之一，理解其物理本质是我们防震减灾的第一步。</p>
+            
+            <h3 class="section-title">岩层断裂与波动模拟</h3>
+            <p class="click-hint">来感受一个地震吧：请点击下方剖面图中的断层线深处</p>
+            <div id="fault-viz" class="viz-container"></div>
+            
+            <p>地壳并非静态的实体，而是由巨大的板块相互挤压、摩擦构成的动力系统。根据板块构造理论，板块间的相对运动导致边界处岩石发生形变。弹性回跳理论指出，岩石在受压时像弹簧一样储存弹性势能，一旦断层破裂，这些势能瞬时释放，产生地震波。在我们的模拟中，你可以观察到地震波在不同密度的地层中传播速度的差异：深层岩石更为致密，波速明显快于地表浅层。</p>
+        </section>
+
+        <section class="step" id="ch1-waves">
+            <h3 class="section-title">地震波的形态与破坏力</h3>
+            <p>地震波分为体波和面波。体波在地球内部传播，包括纵波（P波）和横波（S波）。纵波使介质质点沿波传播方向前后往复，类似弹簧的挤压；而横波则使质点垂直于波方向摇摆，产生剪切力。后续产生的面波则沿地面传播，振幅大且衰减慢。这些复杂的机械振动是导致房屋结构受损的直接原因。</p>
+            
+            <p class="click-hint">点击下方演示框，观察不同波形对房屋的影响</p>
+            <div class="wave-grid">
+                <div id="p-wave-box" class="wave-box">
+                    <p style="text-indent:0; text-align:center; font-weight:bold;">纵波 (P波)</p>
+                    <div id="p-viz"></div>
+                </div>
+                <div id="s-wave-box" class="wave-box">
+                    <p style="text-indent:0; text-align:center; font-weight:bold;">横波 (S波)</p>
+                    <div id="s-viz"></div>
+                </div>
+            </div>
+            <p>通过对比可以清晰地看到：纵波主要引起房屋的上下颠簸，由于建筑在设计上通常具有较强的承压能力，因此纵波往往不直接导致坍塌；然而横波引起的强烈水平晃动会使墙体承受剧烈的剪切应力，这是导致传统砖木结构建筑损毁的主要元凶。</p>
+        </section>
     </div>
     <script type="module" src="/main.js"></script>
 </body>

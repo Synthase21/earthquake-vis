@@ -1,0 +1,35 @@
+:root {
+  --bg-color: #E8EDF2;
+  --text-main: #000000;
+  --text-highlight: #2C3947;
+  --accent-blue: #547A95;   /* P波颜色 */
+  --highlight-gold: #C2A56D; /* S波颜色 */
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  margin: 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.step {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* 点击波纹样式 */
+.ripple {
+  position: absolute;
+  border: 2px solid var(--highlight-gold);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}

@@ -1,6 +1,10 @@
 import './style.css'
 import { initCh1 } from './scripts/ch1-wave.js'
 // import { initCh2 } from './scripts/ch2-intensity.js' // 等待组员B提交
+// 复制到 main.js：导入并初始化黄一杨负责的两个模块
+import { initCh2} from './scripts/ch2-intensity.js';
+import { initCh3 } from './scripts/ch3-global-data.js';
+
 
 document.querySelector('#app').innerHTML = `
   <section class="step" id="intro">
@@ -22,10 +26,27 @@ document.querySelector('#app').innerHTML = `
       </div>
     </div>
   </section>
+
+
+  <section class="step" id="ch2">
+    <div class="content">
+      <h2 style="color: var(--text-highlight)">房屋震动与破坏</h2>
+      <div id="ch2-intensity-viz"></div>
+    </div>
+  </section>
+
+  <section class="step" id="ch3">
+    <div class="content">
+      <h2 style="color: var(--text-highlight)">全球地震数据</h2>
+      <div id="ch3-global-data-viz"></div>
+    </div>
+  </section>
 `
 
 // 组长负责的初始化逻辑
 initCh1();
+initCh2();
+initCh3();
 
 // 简单的滚动触发逻辑
 const observer = new IntersectionObserver((entries) => {

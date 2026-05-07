@@ -1,14 +1,73 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>全球地震与灾害程度交互式可视化文档</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>全球地震与灾害程度交互式可视化文档</title>
 </head>
+
 <body>
-    <div id="app">
-        <!-- 章节 1-4 的容器将由 main.js 或 HTML 直接定义 -->
-    </div>
-    <script type="module" src="/main.js"></script>
+  <div id="app">
+
+    <section id="ch2-intensity" class="story-section chapter-section">
+      <div class="section-copy narrow-copy">
+        <p class="eyebrow">Chapter 2 / 灾害评估</p>
+        <h2>同一次地震，为什么有的房屋只是摇晃，有的会倒塌？</h2>
+        <p>
+          震级描述地震释放的能量，烈度描述地面运动对人、建筑与环境造成的实际影响。
+          拖动滑块，观察不同结构房屋在同一地震输入下的响应差异。
+        </p>
+      </div>
+
+      <div class="interaction-panel">
+        <div class="control-row">
+          <label for="mag-slider">模拟震级 <strong id="mag-value">5.5</strong></label>
+          <input id="mag-slider" type="range" min="4" max="8.5" value="5.5" step="0.1" />
+          <span class="control-note">相对 M4 能量约 <strong id="energy-ratio">1x</strong></span>
+        </div>
+
+        <div id="ch2-intensity-vis" class="vis-card"></div>
+
+        <p class="caption">
+          提示：点击图中任意位置可生成地震波；滑块越高，结构薄弱的房屋越先进入破坏状态。
+        </p>
+      </div>
+    </section>
+
+    <section id="ch3-global-data" class="story-section chapter-section">
+      <div class="section-copy narrow-copy">
+        <p class="eyebrow">Chapter 3 / 全球现状</p>
+        <h2>把视角拉回全球：近期地震正在何处发生？</h2>
+        <p>
+          这一节复用作业2的核心问题：空间分布、时间变化与事件数量。
+          地图回答“在哪里”，散点图回答“什么时候发生了多强”，柱状图回答“数量如何波动”。
+        </p>
+      </div>
+
+      <div class="interaction-panel">
+        <div class="control-row split-controls">
+          <label for="quake-window">数据窗口</label>
+          <select id="quake-window">
+            <option value="day">过去 24 小时</option>
+            <option value="week">过去 7 天</option>
+            <option value="month" selected>过去 30 天</option>
+          </select>
+
+          <label for="min-mag">最低震级 <strong id="min-mag-value">0.0</strong></label>
+          <input id="min-mag" type="range" min="0" max="7" value="0" step="0.5" />
+        </div>
+
+        <p id="ch3-status" class="data-status">等待加载数据...</p>
+
+        <div id="ch3-stats" class="stat-grid"></div>
+        <div id="ch3-map" class="vis-card large-vis"></div>
+        <div id="ch3-scatter" class="vis-card"></div>
+        <div id="ch3-bars" class="vis-card"></div>
+      </div>
+    </section>
+
+  </div>
+
+  <script type="module" src="/main.js"></script>
 </body>
 </html>

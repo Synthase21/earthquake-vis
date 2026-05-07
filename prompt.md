@@ -42,3 +42,87 @@
 章节3同意；
 章节3、4之间做一个引入，那么如果地震即将发生，请你选择一个避灾的地点：卫生间拐角，学校操场，人防工程，普通房屋楼下，用户拖动小人到对应的地点（贴图）上面，然后1s后模拟地震来临，出现抖动效果，对应不安全的地方倒塌，小人哭脸，安全的地方不倒塌，笑脸；
 章节4，沿用一开始点击产生地震波的交互，这个是核心线索交互形式，可视化展现不同防震减灾手段在用户生成的地震波下的保护效果；可以保留有日本“地基隔震层”、中国“圈梁构造柱”的内部透视图或信息提示卡（Tooltip），但是需要回到线索交互方式上；
+
+
+既然有了目录和部分文档，我们需要在**当前目录**下补齐 Vite 开发环境和工程骨架。请按照以下步骤操作：
+
+### 1. 初始化 NPM 环境与 Vite
+在终端进入 `earthquake-vis` 目录，执行以下命令：
+
+```bash
+# 初始化 package.json
+npm init -y
+
+# 安装 Vite 开发工具和核心依赖库
+npm install vite --save-dev
+npm install d3 topojson-client
+```
+
+### 2. 补齐目录结构
+根据我们的 `skill.md` 规划，手动或通过命令行创建缺少的文件夹：
+
+```bash
+mkdir -p scripts data assets
+```
+
+### 3. 创建核心文件占位
+创建项目运行必须的入口文件和各模块脚本。你可以直接在 VS Code 中新建，或执行：
+
+```bash
+# 根目录文件
+touch index.html style.css main.js
+
+# 业务逻辑脚本
+touch scripts/utils.js scripts/ch1-wave.js scripts/ch2-intensity.js scripts/ch3-global-data.js scripts/ch4-evacuation.js scripts/ch4-architecture.js
+```
+
+### 4. 配置 `package.json` 脚本
+打开 `package.json`，修改 `"scripts"` 部分，以便你可以启动开发服务器：
+
+```json
+"scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview"
+}
+```
+
+### 5. 基础 HTML 骨架挂载
+在 `index.html` 中填入以下内容，这是所有章节的容器：
+
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全球地震与灾害程度交互式可视化文档</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 章节 1-4 的容器将由 main.js 或 HTML 直接定义 -->
+    </div>
+    <script type="module" src="/main.js"></script>
+</body>
+</html>
+```
+
+### 6. Git 仓库同步
+如果你的目录还没有初始化 Git，或者需要提交目前的结构：
+
+```bash
+git init
+git add .
+git commit -m "chore: scaffold project structure and install dependencies"
+```
+
+### 7. 启动预览
+现在你可以运行以下命令，看到一个空白页面，这代表环境已经准备就绪：
+
+```bash
+npm run dev
+```
+
+
+**下一步：**
+作为组长，你现在可以切换到 `feature/ch1-physics` 分支，开始编写 `scripts/utils.js`（地震波函数）和 `scripts/ch1-wave.js`（物理波形动画）了。

@@ -2,8 +2,10 @@
   --bg-color: #E8EDF2;
   --text-main: #000000;
   --text-highlight: #2C3947;
-  --accent-blue: #547A95;   /* P波颜色 */
-  --highlight-gold: #C2A56D; /* S波颜色 */
+  --accent-blue: #547A95;
+  --highlight-gold: #C2A56D;
+  --card-bg: rgba(255, 255, 255, 0.58);
+  --line-soft: rgba(44, 57, 71, 0.18);
 }
 
 body {
@@ -25,25 +27,12 @@ body {
   position: relative;
 }
 
-/* 点击波纹样式 */
 .ripple {
   position: absolute;
   border: 2px solid var(--highlight-gold);
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
-}
-
-
-/* 复制到 style.css 底部。变量应与 skill.md 保持一致。 */
-:root {
-  --bg-color: #E8EDF2;
-  --text-main: #000000;
-  --text-highlight: #2C3947;
-  --accent-blue: #547A95;
-  --highlight-gold: #C2A56D;
-  --card-bg: rgba(255, 255, 255, 0.58);
-  --line-soft: rgba(44, 57, 71, 0.18);
 }
 
 .story-section {
@@ -128,498 +117,81 @@ body {
   display: block;
 }
 
-/* Chapter 2 */
-.wave-field {
-  fill: rgba(255, 255, 255, 0.12);
+.content.wide {
+  width: min(1180px, 100%);
 }
 
-.ground-line {
-  stroke: rgba(44, 57, 71, 0.34);
-  stroke-width: 2;
-  stroke-dasharray: 6 8;
-}
-
-.epicenter-dot {
-  fill: var(--highlight-gold);
-  stroke: var(--text-highlight);
-  stroke-width: 1;
-}
-
-.house-hitbox {
-  fill: rgba(255, 255, 255, 0.22);
-  stroke: rgba(44, 57, 71, 0.12);
-}
-
-.house-roof {
-  fill: var(--text-highlight);
-  opacity: 0.88;
-}
-
-.house-body {
-  fill: rgba(84, 122, 149, 0.28);
-  stroke: var(--text-highlight);
-  stroke-width: 1.4;
-}
-
-.house-window {
-  fill: rgba(255, 255, 255, 0.72);
-  stroke: rgba(44, 57, 71, 0.18);
-}
-
-.isolation-layer {
-  fill: var(--highlight-gold);
-  opacity: 0.82;
-}
-
-.crack {
-  fill: none;
-  stroke: var(--highlight-gold);
-  stroke-width: 2.2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  opacity: 0;
-}
-
-.debris-layer rect {
-  fill: var(--text-highlight);
-  opacity: 0;
-}
-
-.house-title {
-  fill: var(--text-highlight);
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.house-status {
-  fill: var(--accent-blue);
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.house-card[data-level="light"] .house-building {
-  animation: shakeLight 0.42s infinite linear;
-}
-
-.house-card[data-level="moderate"] .house-building {
-  animation: shakeMedium 0.22s infinite linear;
-}
-
-.house-card[data-level="moderate"] .crack-a {
-  opacity: 0.75;
-}
-
-.house-card[data-level="severe"] .house-building {
-  animation: shakeHeavy 0.12s infinite linear;
-  transform: rotate(-5deg) translateX(-3px);
-}
-
-.house-card[data-level="severe"] .crack,
-.house-card[data-level="collapse"] .crack {
-  opacity: 0.92;
-}
-
-.house-card[data-level="collapse"] .house-building {
-  transform: rotate(9deg) translate(7px, 12px);
-  transform-box: fill-box;
-}
-
-.house-card[data-level="collapse"] .debris-layer rect {
-  opacity: 0.72;
-}
-
-.house-card[data-level="severe"] .house-status,
-.house-card[data-level="collapse"] .house-status {
-  fill: var(--highlight-gold);
-}
-
-@keyframes shakeLight {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(1.5px); }
-}
-
-@keyframes shakeMedium {
-  0%, 100% { transform: translateX(-2px); }
-  50% { transform: translateX(2px); }
-}
-
-@keyframes shakeHeavy {
-  0%, 100% { transform: translate(-4px, 0) rotate(-1deg); }
-  50% { transform: translate(4px, 1px) rotate(1deg); }
-}
-
-/* Chapter 3 */
-.stat-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
-  margin: 16px 0;
-}
-
-.stat-card {
-  padding: 16px;
-  border: 1px solid var(--line-soft);
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.46);
-}
-
-.stat-card b {
-  display: block;
-  color: var(--text-highlight);
-  font-size: clamp(20px, 3vw, 34px);
-  margin-bottom: 4px;
-}
-
-.stat-card span {
-  font-size: 13px;
-  color: rgba(44, 57, 71, 0.76);
-}
-
-.map-ocean {
-  fill: rgba(84, 122, 149, 0.10);
-  stroke: rgba(44, 57, 71, 0.12);
-}
-
-.map-countries path {
-  fill: rgba(255, 255, 255, 0.44);
-  stroke: rgba(44, 57, 71, 0.20);
-  stroke-width: 0.5;
-}
-
-.map-legend text,
-.axis text,
-.axis-label {
-  fill: var(--text-highlight);
-  font-size: 12px;
-}
-
-.axis path,
-.axis line {
-  stroke: rgba(44, 57, 71, 0.25);
-}
-
-.chart-tooltip {
-  position: fixed;
-  z-index: 20;
-  max-width: 260px;
-  pointer-events: none;
-  opacity: 0;
-  transform: translateY(4px);
-  transition: opacity 120ms ease, transform 120ms ease;
-  padding: 10px 12px;
-  border-radius: 12px;
-  background: rgba(44, 57, 71, 0.94);
-  color: white;
-  font-size: 13px;
-  line-height: 1.55;
-  box-shadow: 0 14px 36px rgba(44, 57, 71, 0.24);
-}
-
-.chart-tooltip.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (max-width: 780px) {
-  .stat-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .control-row input[type="range"] {
-    min-width: 100%;
-  }
-}
-
-@media (max-width: 520px) {
-  .stat-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-
-.ch2-panel,
-.ch3-panel {
-  margin-top: 32px;
-}
-
-.ch2-control,
-.ch3-control {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(44, 57, 71, 0.12);
-  border-radius: 20px;
-  padding: 20px;
-  margin-bottom: 28px;
-  display: flex;
-  gap: 18px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.ch2-control input,
-.ch3-control input {
-  width: 320px;
-  max-width: 100%;
-}
-
-.ch3-control select {
-  padding: 8px 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(44, 57, 71, 0.2);
-}
-
-.intensity-meter {
-  margin-bottom: 30px;
-}
-
-.meter-line {
-  position: relative;
-  height: 14px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #7fb685, #d8c36f, #d58a55, #b34c4c);
-}
-
-#meter-pointer {
-  position: absolute;
-  top: -8px;
-  width: 4px;
-  height: 30px;
-  background: #2c3947;
-  border-radius: 999px;
-  transform: translateX(-50%);
-  transition: left 0.2s ease;
-}
-
-.meter-labels {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 8px;
-  color: rgba(44, 57, 71, 0.75);
-  font-size: 14px;
-}
-
-.house-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(180px, 1fr));
-  gap: 20px;
-}
-
-.house-card {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(44, 57, 71, 0.12);
-  border-radius: 22px;
-  padding: 18px;
-  box-shadow: 0 16px 40px rgba(44, 57, 71, 0.08);
-}
-
-.house-card h3 {
-  color: #2c3947;
-  margin: 10px 0 6px;
-}
-
-.house-card p {
-  line-height: 1.6;
-  font-size: 14px;
-}
-
-.house-scene {
-  height: 170px;
-  display: grid;
-  place-items: center;
-}
-
-.house-svg {
-  width: 180px;
-  overflow: visible;
-}
-
-.house-body {
-  transform-box: fill-box;
-  transform-origin: 50% 100%;
-  transition: transform 0.25s ease;
-}
-
-.roof {
-  fill: #2c3947;
-}
-
-.wall {
-  fill: rgba(84, 122, 149, 0.32);
-  stroke: #547a95;
-  stroke-width: 3;
-}
-
-.door,
-.window {
-  fill: rgba(255, 255, 255, 0.9);
-}
-
-.crack {
-  fill: none;
-  stroke: #c2a56d;
-  stroke-width: 4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  opacity: 0;
-}
-
-.rubble {
-  fill: #c2a56d;
-  opacity: 0;
-}
-
-.ground {
-  stroke: rgba(44, 57, 71, 0.35);
-  stroke-width: 2;
-}
-
-.house-card.light .house-body {
-  animation: houseShake 0.22s infinite;
-}
-
-.house-card.medium .house-body {
-  animation: houseShake 0.12s infinite;
-}
-
-.house-card.medium .crack {
-  opacity: 1;
-}
-
-.house-card.heavy .house-body {
-  animation: houseShake 0.08s infinite;
-  transform: rotate(10deg) translateY(14px);
-}
-
-.house-card.heavy .crack,
-.house-card.heavy .rubble {
-  opacity: 1;
-}
-
-.house-status {
-  font-weight: 700;
-  color: #2c3947;
-}
-
-@keyframes houseShake {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  50% { transform: translateX(4px); }
-  75% { transform: translateX(-3px); }
-  100% { transform: translateX(0); }
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  margin: 24px 0;
-}
-
-.stat-card,
-.chart-card {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(44, 57, 71, 0.12);
-  border-radius: 22px;
-  box-shadow: 0 16px 40px rgba(44, 57, 71, 0.08);
-}
-
-.stat-card {
-  padding: 20px;
-}
+/* Chapter 2：烈度互动模块 */
 
-.stat-card span {
-  display: block;
-  margin-bottom: 8px;
-  color: rgba(44, 57, 71, 0.75);
+#ch2-intensity .section-copy h2 {
+  font-size: clamp(24px, 3vw, 38px);
+  line-height: 1.16;
+  margin: 8px 0 12px;
 }
 
-.stat-card strong {
-  font-size: 32px;
-  color: #2c3947;
+#ch2-intensity .section-copy p {
+  font-size: 15.5px;
+  line-height: 1.72;
 }
 
-.chart-card {
-  padding: 22px;
-  margin: 24px 0;
+#ch2-intensity .narrow-copy {
+  margin-bottom: 18px;
 }
 
-.chart-card h3 {
-  margin-top: 0;
-  color: #2c3947;
+#ch2-intensity .interaction-panel {
+  width: min(1120px, 100%);
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.chart-card svg {
-  width: 100%;
+#ch2-intensity-viz {
+  padding: 0;
   height: auto;
-  display: block;
-}
-
-.map-bg {
-  fill: rgba(232, 237, 242, 0.7);
-}
-
-.map-earth {
-  fill: rgba(84, 122, 149, 0.12);
-  stroke: rgba(44, 57, 71, 0.25);
-  stroke-width: 2;
-}
-
-.map-grid {
-  stroke: rgba(44, 57, 71, 0.12);
-  stroke-width: 1;
-}
-
-.quake-dot {
-  fill: #c2a56d;
-  stroke: #ffffff;
-  stroke-width: 1;
-  opacity: 0.8;
-}
-
-.axis {
-  stroke: rgba(44, 57, 71, 0.45);
-  stroke-width: 2;
-}
-
-.bar {
-  fill: #547a95;
-}
-
-.chart-label,
-.empty-text {
-  fill: #2c3947;
-  font-size: 15px;
-}
-
-@media (max-width: 900px) {
-  .house-grid,
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
+  min-height: 0;
+  overflow: hidden;
 }
 
 .ch2-module {
   width: 100%;
-  margin-top: 32px;
+  margin-top: 0;
+  box-sizing: border-box;
 }
 
+
 .ch2-intro {
-  max-width: 980px;
-  margin-bottom: 34px;
+  max-width: 100%;
+  margin: 0 0 22px;
+  padding: 0 10px 0 10px;
+  box-sizing: border-box;
   color: rgba(44, 57, 71, 0.88);
-  line-height: 1.9;
-  font-size: 1.05rem;
+  line-height: 1.76;
+  font-size: 1rem;
+}
+
+
+
+.ch2-intro p {
+  margin: 0 0 12px;
+}
+
+.ch2-intro p:last-child {
+  margin-bottom: 0;
 }
 
 .ch2-intro strong {
   color: var(--text-highlight);
 }
 
+
 .ch2-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(300px, 0.8fr);
-  gap: 28px;
+  grid-template-columns: minmax(0, 1.45fr) minmax(360px, 0.82fr);
+  gap: 24px;
   align-items: stretch;
+
+  height: 520px;
+  min-height: 520px;
+  max-height: 520px;
 }
 
 .ch2-simulation,
@@ -627,15 +199,30 @@ body {
   border: 1.5px solid var(--text-highlight);
   background: var(--bg-color);
   border-radius: 24px;
-  padding: 24px;
+  padding: 22px 24px;
   box-shadow: 0 18px 48px rgba(44, 57, 71, 0.08);
+  box-sizing: border-box;
+  overflow: hidden;
+
+  height: 520px;
+  min-height: 520px;
+  max-height: 520px;
+}
+
+.ch2-simulation {
+  display: flex;
+  flex-direction: column;
 }
 
 .building-row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
   align-items: stretch;
+
+  height: 350px;
+  min-height: 350px;
+  max-height: 350px;
 }
 
 .ch2-house-card {
@@ -645,35 +232,65 @@ body {
   padding: 18px;
   text-align: center;
   overflow: hidden;
-}
+  box-sizing: border-box;
 
-.ch2-house-card h3 {
-  margin: 8px 0 4px;
-  color: var(--text-highlight);
-  font-size: 1rem;
-}
+  height: 350px;
+  min-height: 350px;
+  max-height: 350px;
 
-.ch2-house-card p {
-  margin: 6px 0;
-  line-height: 1.55;
-  font-size: 0.9rem;
-}
-
-.structure-status {
-  color: var(--text-highlight);
-  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .house-svg-wrap {
   height: 190px;
+  min-height: 190px;
+  max-height: 190px;
+  width: 100%;
   display: grid;
   place-items: center;
+  overflow: hidden;
 }
 
 .ch2-house-svg {
   width: 100%;
   max-width: 220px;
   overflow: visible;
+}
+
+.ch2-house-card h3 {
+  margin: 8px 0 4px;
+  color: var(--text-highlight);
+  font-size: 1rem;
+  line-height: 1.35;
+
+  height: 44px;
+  min-height: 44px;
+  max-height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ch2-house-card p {
+  margin: 4px 0;
+  line-height: 1.45;
+  font-size: 0.9rem;
+}
+
+.structure-status {
+  color: var(--text-highlight);
+  font-weight: 700;
+
+  height: 42px;
+  min-height: 42px;
+  max-height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .building-core {
@@ -778,7 +395,15 @@ body {
 }
 
 .mmi-control {
-  margin-top: 32px;
+  margin-top: 20px;
+  height: 104px;
+  min-height: 104px;
+  max-height: 104px;
+  flex: 0 0 104px;
+
+  /* 这里要和滑块圆点直径一致 */
+  --mmi-thumb-size: 24px;
+  --mmi-track-h: 10px;
 }
 
 .mmi-header {
@@ -786,53 +411,194 @@ body {
   justify-content: space-between;
   align-items: baseline;
   color: var(--text-highlight);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
+
+  height: 42px;
+  min-height: 42px;
+  max-height: 42px;
 }
 
 .mmi-header strong {
-  font-size: 2.2rem;
+  font-size: 2rem;
   letter-spacing: 0.05em;
+  line-height: 1;
 }
 
+/* 滑条保持满宽，不要再缩短 */
 #mmi-slider {
+  display: block;
   width: 100%;
+  margin: 0;
   accent-color: var(--text-highlight);
 }
 
+/* 刻度区域缩进半个滑块圆点，让 I 对齐圆心 */
 .mmi-ticks {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 4px;
+  position: relative;
+  height: 30px;
   margin-top: 10px;
+  margin-left: calc(var(--mmi-thumb-size) / 2);
+  margin-right: calc(var(--mmi-thumb-size) / 2);
   color: rgba(44, 57, 71, 0.72);
   font-size: 0.78rem;
-  text-align: center;
+  font-weight: 700;
 }
 
+.mmi-ticks span {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.mmi-ticks span:nth-child(1) { left: 0%; }
+.mmi-ticks span:nth-child(2) { left: 9.0909%; }
+.mmi-ticks span:nth-child(3) { left: 18.1818%; }
+.mmi-ticks span:nth-child(4) { left: 27.2727%; }
+.mmi-ticks span:nth-child(5) { left: 36.3636%; }
+.mmi-ticks span:nth-child(6) { left: 45.4545%; }
+.mmi-ticks span:nth-child(7) { left: 54.5454%; }
+.mmi-ticks span:nth-child(8) { left: 63.6363%; }
+.mmi-ticks span:nth-child(9) { left: 72.7272%; }
+.mmi-ticks span:nth-child(10) { left: 81.8181%; }
+.mmi-ticks span:nth-child(11) { left: 90.9090%; }
+.mmi-ticks span:nth-child(12) { left: 100%; }
+
+
+
 .history-card {
-  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+}
+
+.damage-card {
+  flex: 0 0 auto;
+  margin: 0 0 18px;
+  padding: 12px 12px 8px;
+  border: 1px solid rgba(44, 57, 71, 0.16);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.46);
+  box-sizing: border-box;
+}
+
+.damage-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 6px;
+  color: var(--text-highlight);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.damage-card-head strong {
+  color: var(--highlight-gold);
+  font-size: 1.05rem;
+}
+
+.damage-caption {
+  margin: 4px 0 0;
+  color: rgba(44, 57, 71, 0.68);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+#damage-curve {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.damage-axis {
+  stroke: rgba(44, 57, 71, 0.45);
+  stroke-width: 1.4;
+}
+
+.damage-grid {
+  stroke: rgba(44, 57, 71, 0.12);
+  stroke-width: 1;
+}
+
+.damage-curve-path {
+  fill: none;
+  stroke: var(--accent-blue);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.damage-guide {
+  stroke: rgba(194, 165, 109, 0.78);
+  stroke-width: 1.4;
+  stroke-dasharray: 5 4;
+}
+
+.damage-point {
+  fill: var(--highlight-gold);
+  stroke: var(--text-highlight);
+  stroke-width: 2;
+}
+
+.damage-tick-label,
+.damage-point-label,
+.damage-axis-title {
+  fill: var(--text-highlight);
+}
+
+.damage-tick-label {
+  font-size: 10px;
+}
+
+.damage-point-label {
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.damage-axis-title {
+  font-size: 11px;
+  font-weight: 800;
 }
 
 .history-label {
-  margin: 0 0 16px;
+  margin: 0 0 12px;
   color: var(--accent-blue);
   text-transform: uppercase;
   letter-spacing: 0.14em;
   font-size: 0.78rem;
   font-weight: 800;
+  flex: 0 0 auto;
 }
+
+/* 如果上面有函数图，就给“历史灾害数据映射”往下压一点 */
+.damage-card + .history-label {
+  margin-top: 10px;
+}
+
 
 .history-card h3 {
   color: var(--text-highlight);
-  font-size: 1.45rem;
-  line-height: 1.35;
-  margin: 0 0 18px;
+  font-size: 1.12rem;
+  line-height: 1.32;
+  margin: 0 0 10px;
+  flex: 0 0 auto;
 }
+
 
 .history-card p {
   color: rgba(44, 57, 71, 0.88);
-  line-height: 1.9;
+  line-height: 1.75;
   white-space: pre-line;
+  margin: 0;
+}
+
+#history-body {
+  display: block;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 6px;
 }
 
 #history-body::after {
@@ -884,19 +650,179 @@ body {
   46%, 100% { opacity: 0; }
 }
 
-@media (max-width: 980px) {
-  .ch2-layout {
-    grid-template-columns: 1fr;
-  }
+/* Chapter 3：基础图表模块 */
 
-  .building-row {
-    grid-template-columns: 1fr;
-  }
+.ch3-panel {
+  margin-top: 32px;
 }
 
-.content.wide {
-  width: min(1180px, 100%);
+.ch3-control {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(44, 57, 71, 0.12);
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 28px;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  flex-wrap: wrap;
 }
+
+.ch3-control input {
+  width: 320px;
+  max-width: 100%;
+}
+
+.ch3-control select {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(44, 57, 71, 0.2);
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 24px 0;
+}
+
+.stat-card,
+.chart-card {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(44, 57, 71, 0.12);
+  border-radius: 22px;
+  box-shadow: 0 16px 40px rgba(44, 57, 71, 0.08);
+}
+
+.stat-card {
+  padding: 20px;
+}
+
+.stat-card b {
+  display: block;
+  color: var(--text-highlight);
+  font-size: clamp(20px, 3vw, 34px);
+  margin-bottom: 4px;
+}
+
+.stat-card span {
+  display: block;
+  margin-bottom: 8px;
+  color: rgba(44, 57, 71, 0.75);
+  font-size: 13px;
+}
+
+.stat-card strong {
+  font-size: 32px;
+  color: var(--text-highlight);
+}
+
+.chart-card {
+  padding: 22px;
+  margin: 24px 0;
+}
+
+.chart-card h3 {
+  margin-top: 0;
+  color: var(--text-highlight);
+}
+
+.chart-card svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.map-ocean {
+  fill: rgba(84, 122, 149, 0.10);
+  stroke: rgba(44, 57, 71, 0.12);
+}
+
+.map-countries path {
+  fill: rgba(255, 255, 255, 0.44);
+  stroke: rgba(44, 57, 71, 0.20);
+  stroke-width: 0.5;
+}
+
+.map-legend text,
+.axis text,
+.axis-label {
+  fill: var(--text-highlight);
+  font-size: 12px;
+}
+
+.axis path,
+.axis line {
+  stroke: rgba(44, 57, 71, 0.25);
+}
+
+.axis {
+  stroke: rgba(44, 57, 71, 0.45);
+  stroke-width: 2;
+}
+
+.map-bg {
+  fill: rgba(232, 237, 242, 0.7);
+}
+
+.map-earth {
+  fill: rgba(84, 122, 149, 0.12);
+  stroke: rgba(44, 57, 71, 0.25);
+  stroke-width: 2;
+}
+
+.map-grid {
+  stroke: rgba(44, 57, 71, 0.12);
+  stroke-width: 1;
+}
+
+.quake-dot {
+  fill: var(--highlight-gold);
+  stroke: #ffffff;
+  stroke-width: 1;
+  opacity: 0.8;
+}
+
+.bar {
+  fill: var(--accent-blue);
+}
+
+.chart-label,
+.empty-text {
+  fill: var(--text-highlight);
+  font-size: 15px;
+}
+
+.chart-tooltip {
+  position: fixed;
+  z-index: 20;
+  max-width: 260px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 120ms ease, transform 120ms ease;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(44, 57, 71, 0.94);
+  color: white;
+  font-size: 13px;
+  line-height: 1.55;
+  box-shadow: 0 14px 36px rgba(44, 57, 71, 0.24);
+}
+
+.chart-tooltip.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Chapter 3：A2 地震数据模块 */
 
 .ch3-a2-module {
   margin-top: 32px;
@@ -1235,6 +1161,8 @@ body {
   z-index: 9999;
 }
 
+/* Responsive */
+
 @media (max-width: 1000px) {
   .ch3-a2-grid {
     grid-template-columns: 1fr;
@@ -1242,5 +1170,56 @@ body {
 
   .ch3-a2-panel-head {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 980px) {
+  .ch2-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+  }
+
+  .ch2-simulation,
+  .history-card {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+  }
+
+  .building-row {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+  }
+
+  .ch2-house-card {
+    height: 350px;
+    min-height: 350px;
+    max-height: 350px;
+  }
+}
+
+@media (max-width: 900px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 780px) {
+  .stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .control-row input[type="range"] {
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .stat-grid {
+    grid-template-columns: 1fr;
   }
 }

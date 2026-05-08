@@ -51,11 +51,6 @@
       </div>
 
       <div class="interaction-panel">
-        <div class="control-row">
-          <label for="mag-slider">模拟震级 <strong id="mag-value">5.5</strong></label>
-          <input id="mag-slider" type="range" min="4" max="8.5" value="5.5" step="0.1" />
-          <span class="control-note">相对 M4 能量约 <strong id="energy-ratio">1x</strong></span>
-        </div>
 
         <div id="ch2-intensity-viz" class="vis-card"></div>
 
@@ -76,25 +71,9 @@
       </div>
 
       <div class="interaction-panel">
-        <div class="control-row split-controls">
-          <label for="quake-window">数据窗口</label>
-          <select id="quake-window">
-            <option value="day">过去 24 小时</option>
-            <option value="week">过去 7 天</option>
-            <option value="month" selected>过去 30 天</option>
-          </select>
-
-          <label for="min-mag">最低震级 <strong id="min-mag-value">0.0</strong></label>
-          <input id="min-mag" type="range" min="0" max="7" value="0" step="0.5" />
-        </div>
-
-        <p id="ch3-status" class="data-status">等待加载数据...</p>
-
-        <div id="ch3-stats" class="stat-grid"></div>
-        <div id="ch3-map" class="vis-card large-vis"></div>
-        <div id="ch3-scatter" class="vis-card"></div>
-        <div id="ch3-bars" class="vis-card"></div>
+        <div id="ch3-global-data-viz"></div>
       </div>
+
     </section>
 
   </div>

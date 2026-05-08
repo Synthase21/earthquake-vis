@@ -1,5 +1,12 @@
 const romanLevels = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII']
 
+function damageFromMMI(level) {
+  // S 型损伤曲线：低烈度损伤很低，中高烈度快速上升，高烈度接近饱和
+  const value = 100 / (1 + Math.exp(-0.9 * (level - 7)))
+  return Math.max(0, Math.min(100, value))
+}
+
+
 const historicalCases = [
   {
     level: 7,
@@ -50,8 +57,8 @@ export function initCh2() {
     <div class="ch2-module">
       <div class="ch2-intro">
         <p>
-          媒体报道往往聚焦于<strong>震级 Magnitude</strong>，也就是地震释放的总能量。
-          但真正决定人类生命财产安全的，是地表的破坏程度——<strong>烈度 Intensity</strong>。
+          媒体报道往往聚焦于<strong>震级</strong>，也就是地震释放的总能量。
+          但真正决定人类生命财产安全的，是地表的破坏程度——<strong>烈度</strong>。
           同一次地震，距离震中越远、地质越好、建筑越坚固，烈度就越低。
         </p>
 
@@ -84,10 +91,24 @@ export function initCh2() {
         </div>
 
         <aside class="history-card">
+          <div class="damage-card">
+            <div class="damage-card-head">
+              <span>烈度损伤函数</span>
+              <strong id="damage-current">0.0</strong>
+            </div>
+
+            <svg id="damage-curve" viewBox="0 0 360 170" aria-label="烈度损伤函数图"></svg>
+
+            <p class="damage-caption">
+             横轴为 MMI 烈度，纵轴为估算损伤值。
+            </p>
+          </div>
+
           <p class="history-label">历史灾害数据映射</p>
           <h3 id="history-title">等待输入</h3>
           <p id="history-body">滑动滑块以查看对应烈度的物理表现与历史记录。</p>
         </aside>
+
       </div>
     </div>
   `
@@ -101,6 +122,7 @@ export function initCh2() {
 
     updateBuildings(level)
     updateHistory(level)
+    updateDamageCurve(level)
   }
 
   slider.addEventListener('input', update)
@@ -245,6 +267,97 @@ function updateHistory(level) {
   title.textContent = matchedCase.title
   typeText(body, matchedCase.text)
 }
+
+function updateDamageCurve(level) {
+  const svg = document.querySelector('#damage-curve')
+  const damageCurrent = document.querySelector('#damage-current')
+
+  if (!svg) return
+
+  const width = 360
+  const height = 170
+  const margin = {
+    top: 16,
+    right: 16,
+    bottom: 34,
+    left: 42
+  }
+
+  const innerW = width - margin.left - margin.right
+  const innerH = height - margin.top - margin.bottom
+
+  const xScale = value => margin.left + ((value - 1) / 11) * innerW
+  const yScale = value => margin.top + innerH - (value / 100) * innerH
+
+  const damage = damageFromMMI(level)
+
+  if (damageCurrent) {
+    damageCurrent.textContent = damage.toFixed(1)
+  }
+
+  let curvePath = ''
+
+  for (let x = 1; x <= 12.001; x += 0.08) {
+    const px = xScale(x)
+    const py = yScale(damageFromMMI(x))
+    curvePath += `${x <= 1.001 ? 'M' : 'L'} ${px.toFixed(2)} ${py.toFixed(2)} `
+  }
+
+  const pointX = xScale(level)
+  const pointY = yScale(damage)
+
+  const yTicks = [0, 25, 50, 75, 100]
+
+  const yGrid = yTicks.map(tick => {
+    const y = yScale(tick)
+
+    return `
+      <line class="damage-grid" x1="${margin.left}" y1="${y}" x2="${width - margin.right}" y2="${y}"></line>
+      <text class="damage-tick-label" x="${margin.left - 8}" y="${y + 4}" text-anchor="end">${tick}</text>
+    `
+  }).join('')
+
+  const xLabels = romanLevels.map((label, index) => {
+    const x = xScale(index + 1)
+
+    return `
+      <text class="damage-tick-label" x="${x}" y="${height - 12}" text-anchor="middle">${label}</text>
+    `
+  }).join('')
+
+  const labelX = Math.min(pointX + 8, width - 76)
+  const labelY = Math.max(pointY - 10, 18)
+
+  svg.innerHTML = `
+    ${yGrid}
+
+    <line class="damage-axis" x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${height - margin.bottom}"></line>
+    <line class="damage-axis" x1="${margin.left}" y1="${height - margin.bottom}" x2="${width - margin.right}" y2="${height - margin.bottom}"></line>
+
+    <path class="damage-curve-path" d="${curvePath}"></path>
+
+    <line class="damage-guide" x1="${pointX}" y1="${pointY}" x2="${pointX}" y2="${height - margin.bottom}"></line>
+    <line class="damage-guide" x1="${margin.left}" y1="${pointY}" x2="${pointX}" y2="${pointY}"></line>
+
+    <circle class="damage-point" cx="${pointX}" cy="${pointY}" r="5.5"></circle>
+
+    <text class="damage-point-label" x="${labelX}" y="${labelY}">
+      ${romanLevels[level - 1]} / ${damage.toFixed(1)}
+    </text>
+
+    ${xLabels}
+
+    <text class="damage-axis-title" x="14" y="${margin.top + innerH / 2}" text-anchor="middle"
+      transform="rotate(-90 14 ${margin.top + innerH / 2})">
+      损伤值
+    </text>
+
+    <text class="damage-axis-title" x="${margin.left + innerW / 2}" y="${height - 2}" text-anchor="middle">
+      MMI
+    </text>
+  `
+}
+
 
 function typeText(element, text) {
   clearInterval(typeTimer)

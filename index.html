@@ -9,7 +9,38 @@
 <body>
   <div id="app">
 
-    <section id="ch2-intensity" class="story-section chapter-section">
+    <section id="intro" class="step story-section">
+      <div class="section-copy narrow-copy">
+        <h1 style="color: var(--text-highlight)">地球表面并非铁板一块</h1>
+        <p>在我们脚下，岩层正无声地积蓄着能量。</p>
+      </div>
+
+      <div id="earth-section" style="width: 600px; height: 300px; background: #ddd; cursor: crosshair;">
+        <!-- 这里放置地层剖面图SVG -->
+        <p style="text-align:center; padding-top:100px">点击此处模拟断层破裂</p>
+      </div>
+    </section>
+
+    <section id="ch1" class="step story-section chapter-section">
+      <div class="content">
+        <h2 style="color: var(--text-highlight)">地震波：能量的舞步</h2>
+
+        <div id="ch1-wave-viz"></div>
+
+        <div class="desc">
+          <p>
+            <b style="color:var(--accent-blue)">P波 (纵波)</b>：
+            质点沿传播方向前后往复，速度最快。
+          </p>
+          <p>
+            <b style="color:var(--highlight-gold)">S波 (横波)</b>：
+            质点垂直于传播方向摇摆，是破坏力的主要来源。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="ch2-intensity" class="step story-section chapter-section">
       <div class="section-copy narrow-copy">
         <p class="eyebrow">Chapter 2 / 灾害评估</p>
         <h2>同一次地震，为什么有的房屋只是摇晃，有的会倒塌？</h2>
@@ -26,7 +57,7 @@
           <span class="control-note">相对 M4 能量约 <strong id="energy-ratio">1x</strong></span>
         </div>
 
-        <div id="ch2-intensity-vis" class="vis-card"></div>
+        <div id="ch2-intensity-viz" class="vis-card"></div>
 
         <p class="caption">
           提示：点击图中任意位置可生成地震波；滑块越高，结构薄弱的房屋越先进入破坏状态。
@@ -34,7 +65,7 @@
       </div>
     </section>
 
-    <section id="ch3-global-data" class="story-section chapter-section">
+    <section id="ch3-global-data" class="step story-section chapter-section">
       <div class="section-copy narrow-copy">
         <p class="eyebrow">Chapter 3 / 全球现状</p>
         <h2>把视角拉回全球：近期地震正在何处发生？</h2>

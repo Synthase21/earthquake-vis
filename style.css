@@ -1347,8 +1347,18 @@ p {
 
 /* =============================================
    Chapter 4 — 避险微游戏 & 地震预警 (成员C)
-   Section layout follows .step; titles use .chapter-title
+   Section layout follows .step; module titles left-aligned
    ============================================= */
+
+.ch4-module-title {
+  font-family: "SimHei", "STHeiti", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-highlight);
+  margin: 2rem 0 0.6rem;
+  text-align: left;
+  width: 100%;
+}
 
 #ch4-evacuation-viz {
   width: 100%;

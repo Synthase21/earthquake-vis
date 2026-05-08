@@ -1,41 +1,109 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>地震灾害科学可视化</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>地震灾害科学可视化</title>
 </head>
+
 <body>
-    <div id="app">
-        <h1 class="main-title">为什么地震如此可怖？我们该如何抵御？</h1>
+  <div id="app">
 
-        <section class="step" id="ch1-1">
-            <h2 class="chapter-title">第一章：震颤的根源</h2>
-            <p>地震，本质上是地壳内部能量瞬间释放所引起的剧烈震动。这种自然现象通常源于地壳深处岩层在巨大压力下的突然断裂或滑动。每一次毁灭性的震颤，其实都是地球在数十年甚至数百年间积蓄压力的“一次性清算”。</p>
-            
-            <p class="click-hint">—— 来感受一个地震吧：请点击下方剖面图中的断层线深处 ——</p>
-            <div id="fault-viz" class="viz-container"></div>
+    <section id="intro" class="step story-section">
+      <div class="section-copy narrow-copy">
+        <h1 style="color: var(--text-highlight)">地球表面并非铁板一块</h1>
+        <p>在我们脚下，岩层正无声地积蓄着能量。</p>
+      </div>
 
-            <p>这种能量释放的机制可以通过“板块构造理论”与“弹性回跳理论”来科学地解释。地球的外壳并非完整一块，而是由数个巨大的板块拼合而成。当这些板块在软流圈的驱动下相互挤压或摩擦时，边界处的岩石会发生弹性形变。想象一根被逐渐拉弯的木尺，它在断裂前积蓄了大量的弹性势能。一旦应力超过了岩石的强度极限，断层便会发生猝发性的位移，岩层瞬间“回弹”至平衡状态，将积蓄的能量化作毁灭性的波动四散传播。在上方可视化中，你可以观察到地震波在致密的深部地层中传播速度更快，而在松散的表层地层中则明显变慢，这种波速差正是导致震害放大的重要因素。</p>
-        </section>
+      <div id="earth-section" style="width: 600px; height: 300px; background: #ddd; cursor: crosshair;">
+        <!-- 这里放置地层剖面图SVG -->
+        <p style="text-align:center; padding-top:100px">点击此处模拟断层破裂</p>
+      </div>
+    </section>
 
-        <section class="step" id="ch1-2">
-            <p>地震爆发后，能量以地震波的形式向外传递。这些波根据传播介质和路径的不同，主要分为体波与面波。最先到达监测站的是<span class="p-wave-txt">纵波</span>，它像弹簧一样沿传播方向往复挤压介质，速度极快；紧随其后的是破坏力显著增强的<span class="s-wave-txt">横波</span>，它以垂直于传播方向的剪切力剧烈摇摆。除此之外，还有沿地表传播、破坏力更为持久的勒夫波与瑞利波，它们共同构成了地震对人类文明的物理挑战。</p>
-            
-            <p class="click-hint">—— 点击下方演示框，观察两种地震波对房屋的影响 ——</p>
-            <div class="wave-grid">
-                <div id="p-box" class="wave-box">
-                    <div style="text-align:center; font-weight:bold; margin-bottom:10px;">纵波模拟</div>
-                    <div id="p-viz"></div>
-                </div>
-                <div id="s-box" class="wave-box">
-                    <div style="text-align:center; font-weight:bold; margin-bottom:10px;">横波模拟</div>
-                    <div id="s-viz"></div>
-                </div>
-            </div>
+    <section id="ch1" class="step story-section chapter-section">
+      <div class="content">
+        <h2 style="color: var(--text-highlight)">地震波：能量的舞步</h2>
 
-            <p>通过物理仿真对比可以直观发现：<span class="p-wave-txt">纵波</span>引起的建筑响应主要表现为高频的垂直颠簸，由于常规建筑在设计时已具备较强的抗重力承载能力，因此<span class="p-wave-txt">纵波</span>通常不会造成建筑主体的垮塌。然而，<span class="s-wave-txt">横波</span>带来的剧烈水平晃动则完全不同，它产生的侧向剪切力会轻易撕裂未经加固的墙体。在模拟中，当<span class="s-wave-txt">横波</span>震动停止后，你可以观察到房屋由于剪切应力超过极限而呈现出的倒塌状态，这正是防震工程学中必须攻克的核心难题。</p>
-        </section>
-    </div>
-    <script type="module" src="/main.js"></script>
+        <div id="ch1-wave-viz"></div>
+
+        <div class="desc">
+          <p>
+            <b style="color:var(--accent-blue)">P波 (纵波)</b>：
+            质点沿传播方向前后往复，速度最快。
+          </p>
+          <p>
+            <b style="color:var(--highlight-gold)">S波 (横波)</b>：
+            质点垂直于传播方向摇摆，是破坏力的主要来源。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="step" id="ch1-1">
+      <h2 class="chapter-title">第一章：震颤的根源</h2>
+      <p>地震，本质上是地壳内部能量瞬间释放所引起的剧烈震动。这种自然现象通常源于地壳深处岩层在巨大压力下的突然断裂或滑动。每一次毁灭性的震颤，其实都是地球在数十年甚至数百年间积蓄压力的“一次性清算”。</p>
+      
+      <p class="click-hint">—— 来感受一个地震吧：请点击下方剖面图中的断层线深处 ——</p>
+      <div id="fault-viz" class="viz-container"></div>
+
+      <p>这种能量释放的机制可以通过“板块构造理论”与“弹性回跳理论”来科学地解释。地球的外壳并非完整一块，而是由数个巨大的板块拼合而成。当这些板块在软流圈的驱动下相互挤压或摩擦时，边界处的岩石会发生弹性形变。想象一根被逐渐拉弯的木尺，它在断裂前积蓄了大量的弹性势能。一旦应力超过了岩石的强度极限，断层便会发生猝发性的位移，岩层瞬间“回弹”至平衡状态，将积蓄的能量化作毁灭性的波动四散传播。在上方可视化中，你可以观察到地震波在致密的深部地层中传播速度更快，而在松散的表层地层中则明显变慢，这种波速差正是导致震害放大的重要因素。</p>
+    </section>
+
+    <section class="step" id="ch1-2">
+      <p>地震爆发后，能量以地震波的形式向外传递。这些波根据传播介质和路径的不同，主要分为体波与面波。最先到达监测站的是<span class="p-wave-txt">纵波</span>，它像弹簧一样沿传播方向往复挤压介质，速度极快；紧随其后的是破坏力显著增强的<span class="s-wave-txt">横波</span>，它以垂直于传播方向的剪切力剧烈摇摆。除此之外，还有沿地表传播、破坏力更为持久的勒夫波与瑞利波，它们共同构成了地震对人类文明的物理挑战。</p>
+      
+      <p class="click-hint">—— 点击下方演示框，观察两种地震波对房屋的影响 ——</p>
+      <div class="wave-grid">
+        <div id="p-box" class="wave-box">
+          <div style="text-align:center; font-weight:bold; margin-bottom:10px;">纵波模拟</div>
+          <div id="p-viz"></div>
+        </div>
+        <div id="s-box" class="wave-box">
+          <div style="text-align:center; font-weight:bold; margin-bottom:10px;">横波模拟</div>
+          <div id="s-viz"></div>
+        </div>
+      </div>
+
+      <p>通过物理仿真对比可以直观发现：<span class="p-wave-txt">纵波</span>引起的建筑响应主要表现为高频的垂直颠簸，由于常规建筑在设计时已具备较强的抗重力承载能力，因此<span class="p-wave-txt">纵波</span>通常不会造成建筑主体的垮塌。然而，<span class="s-wave-txt">横波</span>带来的剧烈水平晃动则完全不同，它产生的侧向剪切力会轻易撕裂未经加固的墙体。在模拟中，当<span class="s-wave-txt">横波</span>震动停止后，你可以观察到房屋由于剪切应力超过极限而呈现出的倒塌状态，这正是防震工程学中必须攻克的核心难题。</p>
+    </section>
+
+    <section id="ch2-intensity" class="step story-section chapter-section">
+      <div class="section-copy narrow-copy">
+        <p class="eyebrow">第二章 / 灾害评估</p>
+        <h2>同一次地震，为什么有的房屋只是摇晃，有的会倒塌？</h2>
+        <p>
+          震级描述地震释放的能量，烈度描述地面运动对人、建筑与环境造成的实际影响。
+        </p>
+      </div>
+
+      <div class="interaction-panel">
+
+        <div id="ch2-intensity-viz" class="vis-card"></div>
+
+        <p class="caption">
+          提示：点击图中任意位置可生成地震波；滑块越高，结构薄弱的房屋越先进入破坏状态。
+        </p>
+      </div>
+    </section>
+
+    <section id="ch3-global-data" class="step story-section chapter-section">
+      <div class="section-copy narrow-copy">
+        <p class="eyebrow">Chapter 3 / 全球现状</p>
+        <h2>把视角拉回全球：近期地震正在何处发生？</h2>
+        <p>
+          这一节复用作业2的核心问题：空间分布、时间变化与事件数量。
+          地图回答“在哪里”，散点图回答“什么时候发生了多强”，柱状图回答“数量如何波动”。
+        </p>
+      </div>
+
+      <div class="interaction-panel">
+        <div id="ch3-global-data-viz"></div>
+      </div>
+
+    </section>
+
+  </div>
+  <script type="module" src="/main.js"></script>
 </body>
 </html>

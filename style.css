@@ -33,7 +33,7 @@ h1, h2, h3 {
 
 .chapter-title {
   font-size: 2.2rem;
-  border-bottom: 3px solid var(--text-highlight);
+  border-bottom: 3px solid #C2A56D;
   padding-bottom: 0.5rem;
   display: inline-block;
   margin-bottom: 2rem;
@@ -95,22 +95,34 @@ p {
 .wave-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px;
+  gap: 40px;
   margin: 2rem 0;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .wave-box {
   background: #ffffff;
-  padding: 20px;
+  padding: 28px;
   border-radius: 8px;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+}
+
+.wave-box > div:first-child {
+  flex-shrink: 0;
 }
 
 .wave-box svg {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  min-height: 190px;
+  flex: 1;
 }
 
 .click-hint {
@@ -119,6 +131,17 @@ p {
   color: var(--text-highlight);
   margin-bottom: 1rem;
   text-indent: 0;
+}
+
+#ch1-1 {
+  min-height: auto;
+  margin-bottom: 1.5rem;
+  padding-bottom: 3rem;
+}
+
+#ch1-2 {
+  min-height: auto;
+  margin-bottom: 2rem;
 }
 
 @keyframes shake-screen {

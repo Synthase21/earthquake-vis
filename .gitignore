@@ -4,3 +4,23 @@ prompt.md
 node_modules
 .vite
 dist
+# Claude AI files
+.claude
+# OS files
+.DS_Store
+Thumbs.db
+# IDE files
+.vscode/settings.json
+.idea/
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# Build outputs
+build/
+out/
+# Temporary files
+*.tmp
+*.swp
+*.bak

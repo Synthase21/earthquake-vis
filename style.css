@@ -1346,40 +1346,32 @@ p {
 }
 
 /* =============================================
-   Chapter 4 — 防灾减灾 (成员C：王舒晗)
+   Chapter 4 — 避险微游戏 & 地震预警 (成员C)
+   Section layout follows .step; titles use .chapter-title
    ============================================= */
 
-#ch4-evacuation,
-#ch4-earlywarning {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 5rem 2rem;
-  box-sizing: border-box;
-  opacity: 1;
-  transform: none;
+#ch4-evacuation-viz {
+  width: 100%;
+  max-width: 1100px;
+  margin: 2rem auto;
+  position: relative;
 }
 
-.ch4-section-title {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--text-highlight);
-  margin-bottom: 0.4rem;
-  letter-spacing: 0.02em;
+#ch4-earlywarning-viz {
+  width: 100%;
+  max-width: 1000px;
+  margin: 2rem auto;
+  position: relative;
 }
 
-.ch4-section-sub {
-  font-size: 0.95rem;
-  color: var(--text-main);
-  opacity: 0.65;
-  max-width: 580px;
-  text-align: center;
-  margin-bottom: 2rem;
-  line-height: 1.6;
+#ch4-earlywarning-viz svg {
+  display: block;
+  border-radius: 10px;
+  width: 100%;
+  aspect-ratio: 860 / 520;
 }
 
+/* ---- Scenario selection grid ---- */
 .scenario-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1423,13 +1415,7 @@ p {
   line-height: 1.4;
 }
 
-#ch4-evacuation-viz {
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-  position: relative;
-}
-
+/* ---- Game container ---- */
 .game-container { width: 100%; position: relative; }
 
 .game-container svg {
@@ -1456,20 +1442,7 @@ p {
 
 .game-back-btn:hover { opacity: 1; }
 
-#ch4-earlywarning-viz {
-  position: relative;
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-#ch4-earlywarning-viz svg {
-  display: block;
-  border-radius: 10px;
-  width: 100%;
-  aspect-ratio: 860 / 520;
-}
-
+/* ---- Stickman & zone ---- */
 .stickman { cursor: grab; transition: filter 0.2s; }
 
 .stickman:hover { filter: drop-shadow(0 0 5px var(--highlight-gold)); }

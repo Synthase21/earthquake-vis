@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --bg-color: #E8EDF2;
   --text-main: #000000;
   --text-highlight: #2C3947;
@@ -14,7 +14,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "SimSun", "STSong", serif;
-  font-size: 18px; /* 正文字体略大 */
+  font-size: 18px;
   line-height: 1.8;
 }
 
@@ -29,38 +29,41 @@ h1, h2, h3 {
   font-size: 2.8rem;
   padding: 5rem 0 3rem 0;
   margin: 0;
-  /* 取消下划线 */
 }
 
 .chapter-title {
   font-size: 2.2rem;
-  border-bottom: 3px solid var(--text-highlight); /* 章节标题保留横线 */
+  border-bottom: 3px solid var(--text-highlight);
   padding-bottom: 0.5rem;
   display: inline-block;
   margin-bottom: 2rem;
 }
 
-/* 章节内小标题 */
 .section-head {
   font-size: 1.6rem;
   margin: 2rem 0 1rem 0;
 }
 
 p {
-  text-indent: 2em; /* 首行缩进 */
-  margin-bottom: 1.5rem; /* 段落间距 */
+  text-indent: 2em;
+  margin-bottom: 1.5rem;
   text-align: justify;
 }
 
-/* 强调文字 */
 .p-wave-txt { color: var(--accent-blue); font-weight: bold; text-indent: 0; }
 .s-wave-txt { color: var(--highlight-gold); font-weight: bold; text-indent: 0; }
 
 .step {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15% 3rem 15%;
+  box-sizing: border-box;
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 1s ease, transform 1s ease;
-  padding: 0 15% 3rem 15%;
 }
 
 .step.visible {
@@ -74,6 +77,67 @@ p {
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
+}
+
+.viz-container {
+  width: 100%;
+  margin: 2rem 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.viz-container svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.wave-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin: 2rem 0;
+}
+
+.wave-box {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.wave-box svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.click-hint {
+  text-align: center;
+  font-weight: bold;
+  color: var(--text-highlight);
+  margin-bottom: 1rem;
+  text-indent: 0;
+}
+
+@keyframes shake-screen {
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-4px, -2px); }
+  20% { transform: translate(4px, 2px); }
+  30% { transform: translate(-4px, 2px); }
+  40% { transform: translate(4px, -2px); }
+  50% { transform: translate(-4px, -2px); }
+  60% { transform: translate(4px, 2px); }
+  70% { transform: translate(-4px, 2px); }
+  80% { transform: translate(4px, -2px); }
+  90% { transform: translate(-4px, -2px); }
+  100% { transform: translate(0, 0); }
+}
+
+.shaking {
+  animation: shake-screen 0.5s cubic-bezier(.36, .07, .19, .97) both;
+  overflow: hidden;
 }
 
 .story-section {
@@ -107,6 +171,7 @@ p {
 }
 
 .interaction-panel {
+  width: 100%;
   max-width: 1160px;
   margin: 0 auto;
 }
@@ -874,62 +939,10 @@ p {
 }
 
 .chart-tooltip.is-visible {
->>>>>>> origin/hyy-ch2-ch3
   opacity: 1;
   transform: translateY(0);
 }
 
-<<<<<<< HEAD
-.viz-container {
-  width: 100%;
-  margin: 2rem 0; /* 保持间距 */
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-}
-
-.wave-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  margin: 2rem 0;
-}
-
-.wave-box {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-}
-
-.click-hint {
-  text-align: center;
-  font-weight: bold;
-  color: var(--text-highlight);
-  margin-bottom: 1rem;
-  text-indent: 0;
-}
-
-/* 屏幕震动动画：模拟剧烈的地表震动 */
-@keyframes shake-screen {
-  0% { transform: translate(0, 0); }
-  10% { transform: translate(-4px, -2px); }
-  20% { transform: translate(4px, 2px); }
-  30% { transform: translate(-4px, 2px); }
-  40% { transform: translate(4px, -2px); }
-  50% { transform: translate(-4px, -2px); }
-  60% { transform: translate(4px, 2px); }
-  70% { transform: translate(-4px, 2px); }
-  80% { transform: translate(4px, -2px); }
-  90% { transform: translate(-4px, -2px); }
-  100% { transform: translate(0, 0); }
-}
-
-.shaking {
-  animation: shake-screen 0.5s cubic-bezier(.36, .07, .19, .97) both;
-  /* 确保震动时不会出现滚动条闪烁 */
-  overflow: hidden; 
-=======
 /* Chapter 3：A2 地震数据模块 */
 
 .ch3-a2-module {
@@ -1330,5 +1343,135 @@ p {
   .stat-grid {
     grid-template-columns: 1fr;
   }
->>>>>>> origin/hyy-ch2-ch3
 }
+
+/* =============================================
+   Chapter 4 — 防灾减灾 (成员C：王舒晗)
+   ============================================= */
+
+#ch4-evacuation,
+#ch4-earlywarning {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 2rem;
+  box-sizing: border-box;
+  opacity: 1;
+  transform: none;
+}
+
+.ch4-section-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-highlight);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.02em;
+}
+
+.ch4-section-sub {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  opacity: 0.65;
+  max-width: 580px;
+  text-align: center;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.scenario-card {
+  background: rgba(44, 57, 71, 0.035);
+  border: 1px solid rgba(44, 57, 71, 0.1);
+  border-radius: 10px;
+  padding: 22px 16px 18px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: center;
+  position: relative;
+}
+
+.scenario-card:hover {
+  background: rgba(84, 122, 149, 0.07);
+  border-color: var(--accent-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(44, 57, 71, 0.06);
+}
+
+.scenario-card .card-icon { font-size: 2rem; margin-bottom: 8px; display: block; }
+
+.scenario-card .card-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-highlight);
+  margin-bottom: 4px;
+}
+
+.scenario-card .card-sub {
+  font-size: 0.78rem;
+  color: var(--text-main);
+  opacity: 0.55;
+  line-height: 1.4;
+}
+
+#ch4-evacuation-viz {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.game-container { width: 100%; position: relative; }
+
+.game-container svg {
+  display: block;
+  border-radius: 10px;
+  width: 100%;
+  aspect-ratio: 900 / 710;
+}
+
+.game-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85rem;
+  color: var(--text-highlight);
+  cursor: pointer;
+  margin-bottom: 1rem;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  background: none;
+  border: none;
+  font-family: inherit;
+}
+
+.game-back-btn:hover { opacity: 1; }
+
+#ch4-earlywarning-viz {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+#ch4-earlywarning-viz svg {
+  display: block;
+  border-radius: 10px;
+  width: 100%;
+  aspect-ratio: 860 / 520;
+}
+
+.stickman { cursor: grab; transition: filter 0.2s; }
+
+.stickman:hover { filter: drop-shadow(0 0 5px var(--highlight-gold)); }
+
+.zone rect:first-child { transition: fill 0.3s ease, stroke 0.3s ease; }

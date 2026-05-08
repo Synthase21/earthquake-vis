@@ -171,6 +171,7 @@ p {
 }
 
 .interaction-panel {
+  width: 100%;
   max-width: 1160px;
   margin: 0 auto;
 }
@@ -1435,7 +1436,7 @@ p {
   display: block;
   border-radius: 10px;
   width: 100%;
-  height: auto;
+  aspect-ratio: 900 / 710;
 }
 
 .game-back-btn {
@@ -1466,7 +1467,7 @@ p {
   display: block;
   border-radius: 10px;
   width: 100%;
-  height: auto;
+  aspect-ratio: 860 / 520;
 }
 
 .stickman { cursor: grab; transition: filter 0.2s; }

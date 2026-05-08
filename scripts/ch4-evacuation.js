@@ -398,7 +398,7 @@ export function initCh4Evacuation() {
 
     const gameWrap = container.append("div").attr("class", "game-container");
     const svg = gameWrap.append("svg")
-      .attr("viewBox", `0 0 ${W} ${H}`).attr("width", "100%").attr("height", "auto");
+      .attr("viewBox", `0 0 ${W} ${H}`).attr("preserveAspectRatio", "xMidYMid meet");
 
     // Environment
     s.env(svg);

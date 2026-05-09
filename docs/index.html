@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>地震灾害科学可视化</title>
+  <script type="module" crossorigin src="./assets/index-BFUz7efM.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CvoEtvx_.css">
+</head>
+<body>
+    <div id="app">
+        <h1 class="main-title">为什么地震如此可怖？我们该如何抵御？</h1>
+
+        <!-- ===== Chapter 1 (组长 master) ===== -->
+        <section class="step" id="ch1-1">
+            <h2 class="chapter-title">第一章：地震的根源</h2>
+            <p>地震，本质上是地壳内部能量瞬间释放所引起的剧烈震动。这种自然现象通常源于地壳深处岩层在巨大压力下的突然断裂或滑动。每一次毁灭性的震颤，其实都是地球在数十年甚至数百年间积蓄压力的"一次性清算"。</p>
+            <p class="click-hint">—— 来感受一个地震吧：请点击下方剖面图中的断层线深处 ——</p>
+            <div id="fault-viz" class="viz-container"></div>
+            <p>这种能量释放的机制可以通过"板块构造理论"与"弹性回跳理论"来科学地解释。地球的外壳并非完整一块，而是由数个巨大的板块拼合而成。当这些板块在软流圈的驱动下相互挤压或摩擦时，边界处的岩石会发生弹性形变。想象一根被逐渐拉弯的木尺，它在断裂前积蓄了大量的弹性势能。一旦应力超过了岩石的强度极限，断层便会发生猝发性的位移，岩层瞬间"回弹"至平衡状态，将积蓄的能量化作毁灭性的波动四散传播。在上方可视化中，你可以观察到地震波在致密的深部地层中传播速度更快，而在松散的表层地层中则明显变慢，这种波速差正是导致震害放大的重要因素。</p>
+        </section>
+
+        <section class="step" id="ch1-2">
+            <p>地震爆发后，能量以地震波的形式向外传递。这些波根据传播介质和路径的不同，主要分为体波与面波。最先到达监测站的是<span class="p-wave-txt">纵波</span>，它像弹簧一样沿传播方向往复挤压介质，速度极快；紧随其后的是破坏力显著增强的<span class="s-wave-txt">横波</span>，它以垂直于传播方向的剪切力剧烈摇摆。除此之外，还有沿地表传播、破坏力更为持久的勒夫波与瑞利波，它们共同构成了地震对人类文明的物理挑战。</p>
+            <p class="click-hint">—— 点击下方演示框，观察两种地震波对房屋的影响 ——</p>
+            <div class="wave-grid">
+                <div id="p-box" class="wave-box">
+                    <div style="text-align:center; font-weight:bold; margin-bottom:10px;">纵波模拟</div>
+                    <div id="p-viz"></div>
+                </div>
+                <div id="s-box" class="wave-box">
+                    <div style="text-align:center; font-weight:bold; margin-bottom:10px;">横波模拟</div>
+                    <div id="s-viz"></div>
+                </div>
+            </div>
+            <p>通过物理仿真对比可以直观发现：<span class="p-wave-txt">纵波</span>引起的建筑响应主要表现为高频的垂直颠簸，由于常规建筑在设计时已具备较强的抗重力承载能力，因此<span class="p-wave-txt">纵波</span>通常不会造成建筑主体的垮塌。然而，<span class="s-wave-txt">横波</span>带来的剧烈水平晃动则完全不同，它产生的侧向剪切力会轻易撕裂未经加固的墙体。在模拟中，当<span class="s-wave-txt">横波</span>震动停止后，你可以观察到房屋由于剪切应力超过极限而呈现出的倒塌状态，这正是防震工程学中必须攻克的核心难题。</p>
+        </section>
+
+        <!-- ===== Chapter 2 (成员B hyy) ===== -->
+        <section id="ch2-intensity" class="step ch2-step ch2-story-section ch2-chapter-section">
+            <div class="ch2-section-copy ch2-narrow-copy">
+                <p class="ch2-eyebrow">第二章：坍圮的家园</p>
+
+                <p>在上一章中我们已经了解了不同的地震波对房屋的影响，那什么样的地震会使房屋倒塌、家园坍圮，引发触目惊心的灾害呢？接下来这一章让我们来关注地震的震级和烈度。</p>
+
+                <p><strong>震级的定义：</strong>震级是衡量地震释放总能量大小的等级，常见新闻中“里氏多少级地震”所说的就是震级。</p>
+
+                <p><strong>烈度的定义：</strong>烈度是指某一地点受到地震影响后的实际破坏程度，体现为地面摇晃强弱、建筑损伤情况以及对人和环境造成的影响。</p>
+
+                <p>我们常在各种新闻报道里，听说里氏多少级地震，这个便是——震级，也就是地震释放的总能量的等级。但真正决定人类生命财产安全的是地震对地表的破坏程度——烈度。</p>
+
+                <p>本章将烈度划分为标准的一至十二级，参考麦加利地震烈度表，请拖动滑块观察所给出的几种建筑在不同烈度下的表现。</p>
+            </div>
+
+            <div class="ch2-interaction-panel">
+                <div id="ch2-intensity-viz" class="ch2-vis-card"></div>
+            </div>
+        </section>
+
+
+
+        <!-- ===== Chapter 3 (成员B hyy) ===== -->
+        <section id="ch3-global-data" class="step ch3-step ch3-story-section ch3-chapter-section">
+            <div class="ch3-section-copy ch3-narrow-copy">
+                <p class="ch3-eyebrow">第三章：全球的地震近况</p>
+            </div>
+
+            <div class="ch3-interaction-panel">
+                <div id="ch3-global-data-viz"></div>
+            </div>
+        </section>
+
+
+
+        <!-- ===== Chapter 4 (成员C wsh) ===== -->
+        <section class="step" id="ch4-intro">
+            <h2 class="chapter-title">第四章：生命的抉择</h2>
+            <p>在前三章中，我们理解了地震波的物理本质，观察了不同烈度对建筑结构的摧残，也俯瞰了全球地震的分布格局。数据与模拟共同指向一个冷峻的事实：地震并非遥不可及的地质奇观，而是随时可能降临于每个人日常场景中的生存考验。</p>
+            <p>灾害医学与地震工程学的研究反复验证了一个关键结论——绝大多数地震伤亡并非源于地面的直接撕裂，而是<span class="s-wave-txt">建筑物的坍塌、室内外物体的坠落与倾覆</span>。当地震来临时，从感知震动到建筑响应往往不过数秒，而你此刻<span class="s-wave-txt">所处的位置</span>将深刻影响你的存活概率。</p>
+        </section>
+
+        <section class="step" id="ch4-earlywarning">
+            <h3 class="ch4-module-title">地震预警：与时间赛跑</h3>
+            <p>想象一个场景：你身处某座城市，突然感受到地震的来临。首先抵达的是<span class="p-wave-txt">纵波（P波）</span>，它以约 6 km/s 的速度率先穿过地层，造成轻微的上下颠簸。但真正危险还未到来——破坏力最强的<span class="s-wave-txt">横波（S波）</span>仅以约 3.5 km/s 的速度紧随其后，带来剧烈的左右摇晃。这个演示模拟了当你所在城市遭遇地震时，纵波与横波依次抵达的全过程。</p>
+            <p>回到第一章的核心物理事实，这看似微小的速度差，恰恰构成了现代地震预警系统的科学基石。地震预警并非"预测"地震，而是<span class="p-wave-txt">"抢跑"</span>——当震源附近的传感器检测到无害的 P 波后，系统立即通过电磁波信号（接近光速）向远方城市发出警报，抢在 S 波到达之前完成信息传递。距离震源越远，预警时间窗口越长：60 km 外的城市大约拥有 7 秒的预警时间，180 km 外则可获得约 21 秒。</p>
+            <p class="click-hint">—— 点击下方按钮，观察 P 波与 S 波抵达不同城市的时间差 ——</p>
+            <div id="ch4-earlywarning-viz"></div>
+            <p>数秒至数十秒的预警，足够让人们躲入桌下、关停燃气阀门、制动高速列车、暂停精密手术。这是科技赋予人类对抗自然伟力的智慧——我们无法阻止地震的发生，但我们可以比地震波跑得更快。</p>
+        </section>
+
+        <section class="step" id="ch4-evacuation">
+            <h3 class="ch4-module-title">避险演练：你的位置决定生死</h3>
+            <p>当预警系统为你争取的宝贵时间来临，行动至关重要。在经历纵波的初期震颤后，你需要立即采取避险措施。请选择一个你认为最安全的躲避位置——无论是坚固的家具下方、承重墙边，还是卫生间的角落。这一刻的判断决定了你能否度过横波的剧烈摇晃。</p>
+            <p class="click-hint">—— 请选择一个场景，将火柴人拖拽到你判断为安全的避险位置 ——</p>
+            <div id="ch4-evacuation-viz"></div>
+            <p>以上六种场景涵盖学校、办公、街道、商业、居住与交通六大日常空间。每一处安全或危险的判定，均以结构力学中的"生命三角"理论、建筑倒塌模式以及坠落物风险概率为基础。躲过纵波的危险后，当你在安全的紧急避险位置稳定自身，横波引发的余震即将来临。此时应尽快前往开阔地带，远离可能坍塌的建筑结构，避免二次伤害。这一系列决策与行动，在地震的数十秒窗口内完成，决定了生死的天平最终会向哪一方倾斜。</p>
+        </section>
+
+        <section class="step" id="ch4-conclusion">
+            <p>从地球深处的板块运动，到地表城市中的紧急抉择，从物理学原理到工程实践，从全球格局到个人行动——这一场视觉与叙事的旅程，其实在回答一个最根本的问题：面对自然的伟力，人类的脆弱是否意味着无力？</p>
+            <p>科学告诉我们答案是否定的。我们虽然无法改变地震本身，但可以通过理解其机制来更好地防守。从<strong>板块理论的认知</strong>中，我们学会了敬畏地球的运动规律；从<strong>烈度与破坏的对应</strong>中，我们理解了建筑设防的必要性；从<strong>全球地震分布</strong>中，我们认识到这不是孤立的灾难而是地球常态的一部分；从<strong>预警技术与避险方法</strong>中，我们获得了应对的具体行动。</p>
+            <p>这不仅是一套科普知识，更是一种直面风险、以理性驾驭恐惧的态度。每一次地震后的重建，都见证了人类的韧性；每一项防灾技术的完善，都体现了对生命的尊重。当下一次地震降临，希望你不只是恐惧，而是能够果断地做出正确的选择。地球在动，科学在答，而你——已经准备好了。</p>
+        </section>
+        <div class="doc-link-panel">
+            <a class="doc-link" href="doc.html">阅读项目说明文档</a>
+        </div>
+    </div>
+</body>
+</html>

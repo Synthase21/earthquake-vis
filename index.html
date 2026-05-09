@@ -59,26 +59,23 @@
         </section>
 
         <!-- ===== Chapter 4 (成员C wsh) ===== -->
-        <section id="ch4-evacuation" class="step story-section chapter-section">
-            <div class="section-copy narrow-copy">
-                <p class="eyebrow">Chapter 4 / 防灾减灾</p>
-                <h2>地震来时，你站在哪里？</h2>
-                <p>地震发生时的位置决定了生死。选择一个场景，将火柴人拖拽到正确的避险位置，系统将评估你的选择并给出科学依据。</p>
-            </div>
-            <div class="interaction-panel">
-                <div id="ch4-evacuation-viz"></div>
-            </div>
+        <section class="step" id="ch4-evacuation">
+            <h2 class="chapter-title">第四章：生命的抉择</h2>
+            <p>在前三章中，我们理解了地震波的物理本质，观察了不同烈度对建筑结构的摧残，也俯瞰了全球地震的分布格局。数据与模拟共同指向一个冷峻的事实：地震并非遥不可及的地质奇观，而是随时可能降临于每个人日常场景中的生存考验。</p>
+            <p>灾害医学与地震工程学的研究反复验证了一个关键结论——绝大多数地震伤亡并非源于地面的直接撕裂，而是<span class="s-wave-txt">建筑物的坍塌、室内外物体的坠落与倾覆</span>。当地震来临时，从感知震动到建筑响应往往不过数秒，而你此刻<span class="s-wave-txt">所处的位置</span>将深刻影响你的存活概率。</p>
+            <h3 class="ch4-module-title">避险演练：你的位置决定生死</h3>
+            <p class="click-hint">—— 请选择一个场景，将火柴人拖拽到你判断为安全的避险位置 ——</p>
+            <div id="ch4-evacuation-viz"></div>
+            <p>以上六种场景涵盖学校、办公、街道、商业、居住与交通六大日常空间。每一处安全或危险的判定，均以结构力学中的"生命三角"理论、建筑倒塌模式以及坠落物风险概率为基础。这些知识无法阻止地震的发生，但可以在板块再次滑动的瞬间，为你争取到最珍贵的东西——时间与选择。</p>
         </section>
 
-        <section id="ch4-earlywarning" class="step story-section chapter-section">
-            <div class="section-copy narrow-copy">
-                <p class="eyebrow">Chapter 4 / 地震预警</p>
-                <h2>地震预警：P波与S波的时间竞赛</h2>
-                <p>P波（纵波）传播速度约为 S波（横波）的 1.7 倍。利用这一物理规律，地震预警系统可在破坏性 S波到达前争取数秒至数十秒的宝贵避险时间。</p>
-            </div>
-            <div class="interaction-panel">
-                <div id="ch4-earlywarning-viz"></div>
-            </div>
+        <section class="step" id="ch4-earlywarning">
+            <h3 class="ch4-module-title">地震预警：与时间赛跑</h3>
+            <p>回到第一章的核心物理事实：<span class="p-wave-txt">P波（纵波）</span>以约 6 km/s 的速度率先穿过地层，而破坏力最强的<span class="s-wave-txt">S波（横波）</span>仅以约 3.5 km/s 的速度紧随其后。这看似微小的速度差，恰恰构成了现代地震预警系统的科学基石。</p>
+            <p>地震预警并非"预测"地震，而是<span class="p-wave-txt">"抢跑"</span>——当震源附近的传感器检测到无害的 P 波后，系统立即通过电磁波信号（接近光速）向远方城市发出警报，抢在 S 波到达之前完成信息传递。距离震源越远，预警时间窗口越长：60 km 外的城市大约拥有 7 秒的预警时间，180 km 外则可获得约 21 秒。</p>
+            <p class="click-hint">—— 点击下方按钮，观察 P 波与 S 波抵达不同城市的时间差 ——</p>
+            <div id="ch4-earlywarning-viz"></div>
+            <p>数秒至数十秒的预警，足够让人们躲入桌下、关停燃气阀门、制动高速列车、暂停精密手术。这是科技赋予人类对抗自然伟力的智慧——我们无法阻止地震的发生，但我们可以比地震波跑得更快。</p>
         </section>
     </div>
     <script type="module" src="/main.js"></script>

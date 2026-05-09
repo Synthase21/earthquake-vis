@@ -87,16 +87,21 @@ export function initCh3() {
     <div class="ch3-a2-module">
       <div class="ch3-a2-narrative">
         <p>
-          上一章我们把视角放在建筑本身，观察烈度升高时不同结构如何摇晃、开裂甚至坍塌。
-          但现实中的地震并不是随机出现在地球表面。它们大多集中在板块边界附近：
-          俯冲带、转换断层、洋中脊和大陆碰撞带，都是能量长期积累并突然释放的位置。
+          在上一章中，我们把视角放在建筑本身，观察烈度升高时，房屋结构是如何摇晃、开裂，甚至最终坍塌的。
+          通过不同建筑在地震中的表现，我们更直观地感受了地震的破坏性，也回顾了历史上那些令人胆战心惊的地震灾害数据。
         </p>
+
         <p>
-          因此，本章复用作业二的全球地震数据可视化，将视角从“单栋建筑的破坏”拉远到
-          “全球地震活动的空间与时间分布”。地图放在最上方，用于观察地震点与板块交界线的关系；
-          下方两张图分别展示“时间 × 震级”和“时间 × 地震数量”。点击地震点或柱状图，可以在三张图之间联动筛选。
+          但是，现实中的地震并不是孤立发生在某一栋建筑之下，也不是随机散落在地球表面。
+          它们往往与板块运动、断层活动和地壳能量释放密切相关，并在全球范围内呈现出一定的空间分布与时间变化规律。
+        </p>
+
+        <p>
+          所以，让我们把视角从“单栋建筑的破坏”继续拉远，转向全球尺度下的地震近况。
+          通过下方的世界地图、震级散点图和地震数量柱状图，我们可以观察近期地震发生在哪里、何时发生、强度如何，以及不同时间段内地震数量如何波动。
         </p>
       </div>
+
 
       <div class="ch3-a2-toolbar">
         <div class="ch3-a2-toolbar-row">
@@ -168,11 +173,19 @@ export function initCh3() {
         </section>
       </div>
 
-      <div id="ch3-a2-tooltip" class="ch3-a2-tooltip" style="opacity:0"></div>
     </div>
   `
 
-  tooltip = d3.select('#ch3-a2-tooltip')
+
+  d3.select('#ch3-a2-tooltip').remove()
+
+  tooltip = d3
+    .select('body')
+    .append('div')
+    .attr('id', 'ch3-a2-tooltip')
+    .attr('class', 'ch3-a2-tooltip')
+    .style('opacity', 0)
+
 
   setupMap()
   setupScatter()
@@ -537,19 +550,10 @@ function renderMap(filtered) {
         .attr('r', 0)
         .attr('fill', item => color(item.depth ?? 0))
         .attr('fill-opacity', 0.85)
-        .on('mousemove', (event, item) => {
-          showTooltip(
-            event,
-            `
-              <div><strong>M ${item.mag.toFixed(1)}</strong> · ${escapeHtml(item.place)}</div>
-              <div>${item.time.toLocaleString()}</div>
-              <div>经度：${fmtCoord(item.lon, 'lon')}</div>
-              <div>纬度：${fmtCoord(item.lat, 'lat')}</div>
-              <div>深度：${item.depth ?? 'N/A'} km</div>
-            `
-          )
-        })
+        .on('mouseenter', showQuakeTooltip)
+        .on('mousemove', showQuakeTooltip)
         .on('mouseleave', hideTooltip)
+
         .on('click', (event, item) => {
           event.stopPropagation()
           selectedId = selectedId === item.id ? null : item.id
@@ -622,35 +626,30 @@ function renderMagnitudeScatter(filtered) {
     tickFormat = d3.timeFormat('%m-%d')
   }
 
-  const plotPadLeft = 28
-  const plotPadRight = 10
-  const plotLeft = margin.left + plotPadLeft
-  const plotRight = width - margin.right - plotPadRight
+  const plotLeft = margin.left
+  const plotRight = width - margin.right
+  const plotTop = margin.top
+  const plotBottom = height - margin.bottom
+  const plotWidth = plotRight - plotLeft
+  const plotHeight = plotBottom - plotTop
 
   scatterSvg
     .select('#ch3-a2-scatterClip rect')
     .attr('x', plotLeft)
-    .attr('y', margin.top)
-    .attr('width', plotRight - plotLeft)
-    .attr('height', height - margin.top - margin.bottom)
-
-  const timePadMs =
-    currentRange === 'day'
-      ? 30 * 60 * 1000
-      : 12 * 60 * 60 * 1000
+    .attr('y', plotTop)
+    .attr('width', plotWidth)
+    .attr('height', plotHeight)
 
   const x = d3
     .scaleTime()
-    .domain([
-      new Date(realStart.getTime() - timePadMs),
-      new Date(realEnd.getTime() + timePadMs)
-    ])
+    .domain([realStart, realEnd])
     .range([plotLeft, plotRight])
 
   const y = d3
     .scaleLinear()
     .domain([0, 9])
-    .range([height - margin.bottom, margin.top])
+    .range([plotBottom, plotTop])
+
 
   const depthExtentRaw = d3.extent(filtered, item => item.depth == null ? 0 : +item.depth)
 
@@ -691,18 +690,8 @@ function renderMagnitudeScatter(filtered) {
         .attr('r', 0)
         .attr('fill', item => color(item.depth ?? 0))
         .attr('fill-opacity', 0.78)
-        .on('mousemove', (event, item) => {
-          showTooltip(
-            event,
-            `
-              <div><strong>M ${item.mag.toFixed(1)}</strong> · ${escapeHtml(item.place)}</div>
-              <div>${item.time.toLocaleString()}</div>
-              <div>经度：${fmtCoord(item.lon, 'lon')}</div>
-              <div>纬度：${fmtCoord(item.lat, 'lat')}</div>
-              <div>深度：${item.depth ?? 'N/A'} km</div>
-            `
-          )
-        })
+        .on('mouseenter', showQuakeTooltip)
+        .on('mousemove', showQuakeTooltip)
         .on('mouseleave', hideTooltip)
         .on('click', (_, item) => {
           selectedId = selectedId === item.id ? null : item.id
@@ -1349,17 +1338,40 @@ function fmtCoord(value, type) {
   return value.toFixed(3)
 }
 
+
+function quakeTooltipHtml(item) {
+  return `
+    <div><strong>M ${item.mag.toFixed(1)}</strong> · ${escapeHtml(item.place || '未知位置')}</div>
+    <div>${item.time.toLocaleString()}</div>
+    <div>经度：${fmtCoord(item.lon, 'lon')}</div>
+    <div>纬度：${fmtCoord(item.lat, 'lat')}</div>
+    <div>深度：${item.depth ?? 'N/A'} km</div>
+  `
+}
+
+function showQuakeTooltip(event, item) {
+  showTooltip(event, quakeTooltipHtml(item))
+}
+
+
 function showTooltip(event, html) {
+  if (!tooltip) return
+
+  const offsetX = 18
+  const offsetY = 18
+
   tooltip
     .style('opacity', 1)
     .html(html)
-    .style('left', `${event.pageX + 12}px`)
-    .style('top', `${event.pageY + 12}px`)
+    .style('left', `${event.clientX + offsetX}px`)
+    .style('top', `${event.clientY + offsetY}px`)
 }
 
 function hideTooltip() {
+  if (!tooltip) return
   tooltip.style('opacity', 0)
 }
+
 
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, char => {

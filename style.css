@@ -417,6 +417,52 @@ p {
   box-sizing: border-box;
 }
 
+.doc-page {
+  min-height: 100vh;
+  padding: 2rem 10%;
+  background: var(--bg-color);
+  color: var(--text-main);
+}
+
+.doc-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.back-button {
+  display: inline-block;
+  margin-bottom: 2rem;
+  padding: 0.7rem 1.2rem;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--line-soft);
+  border-radius: 14px;
+  text-decoration: none;
+  font-size: 0.98rem;
+}
+
+.doc-link-panel {
+  text-align: center;
+  margin: 3rem 0 2rem;
+}
+
+.doc-link {
+  display: inline-block;
+  padding: 0.85rem 1.4rem;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--line-soft);
+  color: var(--text-highlight);
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.15s ease;
+}
+
+.doc-link:hover {
+  transform: translateY(-1px);
+}
+
 .ch2-intro {
   max-width: 100%;
   margin: 0 0 18px;

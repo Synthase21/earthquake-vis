@@ -1,48 +1,88 @@
-<!-- HTML 骨架片段 -->
-<section id="project-doc" style="background-color: var(--text-main); color: var(--bg-color); padding: 4rem 2rem;">
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目说明文档 - 地震灾害科学可视化</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<section id="project-doc" style="background-color: var(--bg-color); color: var(--text-main); padding: 4rem 2rem; min-height: 100vh;">
   <div class="doc-container" style="max-width: 800px; margin: 0 auto;">
+    <a class="back-link" href="index.html" style="text-decoration: none; color: var(--text-highlight); font-size: 0.9rem; margin-bottom: 2rem; display: inline-block; font-weight: bold;">← 返回主页</a>
     <h2>项目说明文档</h2>
-    <p><em>小组成员：[成员A]、[成员B]、[成员C]</em></p>
+    <p><em>小组成员：钟志东、黄一杨、王舒晗</em></p>
 
-    <div class="doc-block">
-      <h3>1. 核心问题与叙事目标</h3>
+    <div class="doc-block" style="background-color: rgba(255,255,255,0.5); padding: 1.5rem; border-radius: 4px; margin-bottom: 2rem;">
+      <h3>1. 可视化方案与核心问题</h3>
       <p>
-        本项目旨在通过“交互式数据新闻”的形式，解答以下递进式问题：<br>
-        - 基础概念：地震是如何发生与传播的？（波的物理原理）<br>
-        - 破坏评估：震级和烈度如何直观影响人类居所？<br>
-        - 数据洞察：当前全球地震的空间分布、时间规律及震级频率如何？<br>
-        - 防震减灾：面对地震，人类个体应如何避险，人类工程如何抵抗？
+        本项目旨在通过"交互式数据新闻"的形式，以递进式的视觉叙事回答关于地震的一系列核心问题。从物理机制的深层理解，到生活场景中的实际应对，每一个章节都拓展了对地震灾害的认识维度。
+      </p>
+      <p>
+        具体而言，本项目通过四个章节回答四类问题：首先揭示<strong>地震如何发生与传播</strong>——通过板块构造理论和地震波物理，让观众理解这一自然现象的科学根源；其次阐明<strong>震级与烈度如何直观影响人类居所</strong>——通过建筑模拟展示不同级别地震的破坏程度；再次呈现<strong>全球地震的空间分布、时间规律与震级统计</strong>——揭示地震的地理集中特征，与第一章的板块理论形成呼应，深化对地震特点的认识；最后提供<strong>个体与集体在面对地震时的应对策略</strong>——从预警技术到避险方法，阐述如果我们遭遇地震，为什么要抓紧宝贵的时间先躲避后撤离，如何通过科学知识将恐惧转化为行动力。
       </p>
     </div>
 
-    <div class="doc-block">
+    <div class="doc-block" style="background-color: rgba(255,255,255,0.5); padding: 1.5rem; border-radius: 4px; margin-bottom: 2rem;">
       <h3>2. 设计决策与替代方案</h3>
+      <p>
+        本项目在可视化编码与交互技术的选择上，经历了多轮方案比较与论证。
+      </p>
       <ul>
-        <li><strong>视觉编码：</strong>在色彩上抛弃了传统的“红黄警示色”，采用高级的灰蓝+沙金（#E8EDF2 / #C2A56D），以纪实新闻的冷峻感传递数据。将地震波统一抽象为“点击生成的同心圆”，作为贯穿全文的视觉线索。</li>
-        <li><strong>交互技术：</strong>采用了“Scrollytelling”结合按需交互（点击/拖拽/滑块）。替代方案曾考虑“完全由用户自主探索的Dashboard”，但考虑到具有科普性质的内容，线性叙事引导+关键节点交互（如拖拽小人避险）能提供更深的沉浸感。</li>
-        <li><strong>特定设计：</strong>在第一和第四章统一使用“点击产生地震波”的交互，形成首尾呼应。</li>
+        <li><strong>视觉编码：</strong>在色彩选择上，我们有意抛弃了传统的"红黄警示色"，转而采用高级的灰蓝+沙金配置（#E8EDF2 / #C2A56D），这种冷调的配色方案赋予了整个项目纪实新闻般的冷峻感，更好地传递了数据的客观性。将地震波统一抽象为"点击生成的同心圆"这一视觉元素，贯穿全文，形成强有力的视觉记忆点。</li>
+        <li><strong>交互技术：</strong>采用了"Scrollytelling"线性叙事结合按需交互（点击/拖拽/滑块）的混合模式。替代方案曾考虑采用"完全由用户自主探索的Dashboard式设计"，但鉴于本项目具有科普与教育的明确意图，线性叙事引导+关键节点交互（如拖拽小人避险、点击产生地震波）的组合能提供更深层次的沉浸感和学习效果。</li>
+        <li><strong>首尾呼应设计：</strong>在第一章和第四章（地震预警部分）统一使用"点击产生地震波、观察波的传播"的交互模式，强化了整个叙事弧线的完整性与统一性。</li>
       </ul>
     </div>
 
-    <div class="doc-block">
-      <h3>3. 外部资源与数据参考</h3>
+    <div class="doc-block" style="background-color: rgba(255,255,255,0.5); padding: 1.5rem; border-radius: 4px; margin-bottom: 2rem;">
+      <h3>3. 外部资源与数据引用</h3>
+      <p>
+        本项目的实现依赖于多个权威数据源和技术资源，现一一列举如下。
+      </p>
       <ul>
-        <li><strong>数据源：</strong>USGS (过去24h/7天/30天地震数据), World-Atlas, PB2002 Plates.</li>
-        <li><strong>叙事灵感：</strong>The Washington Post (新冠模拟器), The Pudding.</li>
-        <li><strong>技术库：</strong>D3.js (v7), Vite, TopoJSON.</li>
-        <li>文案与代码辅助生成：AI (ChatGPT/Claude)</li>
+        <li><strong>地震数据源：</strong>
+          <ul>
+            <li>美国地质调查局（USGS）地震数据 Feed：
+              <ul>
+                <li><a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson" target="_blank">过去24小时地震数据</a></li>
+                <li><a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson" target="_blank">过去7天地震数据</a></li>
+                <li><a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson" target="_blank">过去30天地震数据</a></li>
+              </ul>
+            </li>
+            <li><a href="https://cdn.jsdelivr.net/npm/world-atlas@2/" target="_blank">World-Atlas地理数据</a>（用于全球地图底图）</li>
+            <li><a href="https://raw.githubusercontent.com/fraxen/tectonicplates/refs/heads/master/GeoJSON/PB2002_boundaries.json" target="_blank">PB2002地壳板块边界数据</a>（用于展示板块构造）</li>
+          </ul>
+        </li>
+        <li><strong>设计灵感参考：</strong>
+          <ul>
+            <li><a href="https://www.washingtonpost.com/graphics/2020/world/corona-simulator/" target="_blank">The Washington Post - Corona Simulator</a>（交互式可视化与疫情传播模拟的叙事启发）</li>
+            <li><a href="https://pudding.cool/2018/08/pockets/" target="_blank">The Pudding - Women's Pockets</a>（Scrollytelling文本与可视化的融合方式）</li>
+            <li><a href="https://ncase.me/polygons/" target="_blank">Nicky Case - Polygons</a>（交互式教育可视化的设计理念）</li>
+          </ul>
+        </li>
+        <li><strong>技术库：</strong>D3.js (v7)、Vite、TopoJSON、Playwright（测试框架）</li>
+        <li><strong>辅助工具：</strong>项目文案与部分代码通过 ChatGPT 和 Claude 等大语言模型进行优化与迭代</li>
       </ul>
     </div>
 
-    <div class="doc-block">
+    <div class="doc-block" style="background-color: rgba(255,255,255,0.5); padding: 1.5rem; border-radius: 4px; margin-bottom: 2rem;">
       <h3>4. 开发流程与分工评述</h3>
-      <p><strong>开发耗时：</strong>整体团队耗时约 [XX] 工时。其中，[填写耗时最多的部分，如“D3与物理坐标图的动画绑定”、“地图数据的平滑重构与重绘”] 耗时最多。</p>
-      <p><strong>分工概况：</strong></p>
+      <p>
+        本项目采用 Git 版本控制管理，建立了清晰的特性分支结构（feature branches），每个章节与功能模块对应独立分支，确保团队协作的高效性与代码的可追溯性。最终通过代码审查（code review）合并至主分支，保证代码质量。
+      </p>
+      <p><strong>开发耗时与关键瓶颈：</strong>整体团队耗时约 98 工时。其中，D3.js 与物理坐标系的动画绑定、地图数据的平滑重构与多层级重绘，以及避险场景的交互逻辑实现是耗时最多的环节。</p>
+      <p><strong>分工详情：</strong></p>
       <ul>
-        <li><strong>[成员A]：</strong>项目架构、D3全量数据视图整合（章节3）、前端打包与部署。</li>
-        <li><strong>[成员B]：</strong>物理机制可视化（章节1波形生成）、震级烈度模拟交互（章节2 CSS动画绑定）。</li>
-        <li><strong>[成员C]：</strong>叙事转场文案、避险微游戏（拖拽逻辑）、防震工程特效可视化（章节4）及本文档统筹。</li>
+        <li>成员A：整体架构设计、第一章物理波动、叙事文案与说明文档整理。</li>
+        <li>成员B：第二章烈度互动实现与第三章全球数据可视化与前端部署。</li>
+        <li>成员C：第四章避险交互与地震波传播速度。</li>
       </ul>
+      <p>
+        在开发过程中，团队通过定期同步会议、代码审查与问题回溯，有效应对了跨模块集成、性能优化等技术挑战。Scrollytelling 的实现需要精细调控滚动事件与 D3 动画的同步，这要求团队在前期设计阶段充分沟通；地球地图的多层渲染（背景图层、板块边界层、地震点层）也经历了多次迭代，以达到视觉清晰度与交互流畅度的平衡。这些挑战最终转化为项目的核心竞争力——用科学严谨的方式讲述一个既震撼又易懂的故事。
+      </p>
     </div>
   </div>
 </section>
+</body>
+</html>

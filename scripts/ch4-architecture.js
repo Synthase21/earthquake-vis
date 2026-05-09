@@ -12,9 +12,12 @@ export function initCh4Architecture() {
     .attr("viewBox", `0 0 ${W} ${H}`)
     .attr("width", "100%").attr("height", "auto");
 
-  // Layout
   const groundY = 255;
   const epiX = 70;
+  const sourceY = groundY + 52; // 地下震源位置
+  const sourceLabelX = epiX - 18; // 黄色“震中/震源”文字左移，避免和虚线重合
+  const waveLabelY = groundY - 12; // P波/S波文字：刚好放在地面线上方
+
 
   // Cities (pSec/sSec = real physics seconds; animWarn = animation window in seconds)
   const cities = [
@@ -48,18 +51,60 @@ export function initCh4Architecture() {
     .attr("x", 30).attr("y", groundY).attr("width", W - 40).attr("height", 130)
     .attr("fill", "rgba(44,57,71,0.04)");
 
-  // Fault line at epicenter
+  // Fault line through epicenter and hypocenter
   svg.append("line")
-    .attr("x1", epiX).attr("y1", groundY - 60).attr("x2", epiX).attr("y2", groundY + 80)
-    .attr("stroke", "var(--highlight-gold)").attr("stroke-width", 2.5).attr("stroke-dasharray", "8,4");
+    .attr("x1", epiX).attr("y1", groundY - 60).attr("x2", epiX).attr("y2", sourceY + 28)
+    .attr("stroke", "var(--highlight-gold)")
+    .attr("stroke-width", 2.5)
+    .attr("stroke-dasharray", "8,4");
 
-  // Epicenter marker
-  svg.append("circle").attr("cx", epiX).attr("cy", groundY).attr("r", 8)
-    .attr("fill", "var(--highlight-gold)").attr("stroke", "#fff").attr("stroke-width", 2);
-  svg.append("text").attr("x", epiX).attr("y", groundY - 16).attr("text-anchor", "middle")
-    .attr("fill", "var(--highlight-gold)").attr("font-size", 12).attr("font-weight", "bold").text("震源");
-  svg.append("text").attr("x", epiX).attr("y", groundY + 22).attr("text-anchor", "middle")
-    .attr("fill", "var(--text-main)").attr("font-size", 10).attr("opacity", 0.6).text("0 km");
+  // Surface point: 震中
+  svg.append("circle")
+    .attr("cx", epiX)
+    .attr("cy", groundY)
+    .attr("r", 8)
+    .attr("fill", "var(--highlight-gold)")
+    .attr("stroke", "#fff")
+    .attr("stroke-width", 2);
+
+  svg.append("text")
+    .attr("x", sourceLabelX)
+    .attr("y", groundY - 16)
+    .attr("text-anchor", "middle")
+    .attr("fill", "var(--highlight-gold)")
+    .attr("font-size", 12)
+    .attr("font-weight", "bold")
+    .text("震中");
+
+
+  // Underground point: 震源
+  svg.append("circle")
+    .attr("cx", epiX)
+    .attr("cy", sourceY)
+    .attr("r", 6.5)
+    .attr("fill", "var(--highlight-gold)")
+    .attr("stroke", "#fff")
+    .attr("stroke-width", 1.5);
+
+  svg.append("text")
+    .attr("x", sourceLabelX)
+    .attr("y", sourceY + 20)
+    .attr("text-anchor", "middle")
+    .attr("fill", "var(--highlight-gold)")
+    .attr("font-size", 12)
+    .attr("font-weight", "bold")
+    .text("震源");
+
+
+  svg.append("text")
+    .attr("x", epiX)
+    .attr("y", groundY + 22)
+    .attr("text-anchor", "middle")
+    .attr("fill", "var(--text-main)")
+    .attr("font-size", 10)
+    .attr("opacity", 0.6)
+    .text("0 km");
+
 
   // ---- Distance axis ----
   const axisY = groundY + 105;
@@ -124,28 +169,42 @@ export function initCh4Architecture() {
     return { g, panel, statusText, countdownText, data: c };
   });
 
-  // ---- Wave bars ----
-  // P-wave bar (blue)
+  // P-wave bar (blue) - 从地下震源向上发出
   const pBar = svg.append("line")
-    .attr("x1", epiX).attr("y1", groundY - 115).attr("x2", epiX).attr("y2", groundY + 70)
-    .attr("stroke", "var(--accent-blue)").attr("stroke-width", 3.5).attr("stroke-linecap", "round")
+    .attr("x1", epiX).attr("y1", sourceY).attr("x2", epiX).attr("y2", sourceY)
+    .attr("stroke", "var(--accent-blue)")
+    .attr("stroke-width", 3.5)
+    .attr("stroke-linecap", "round")
     .style("opacity", 0);
 
   const pLabel = svg.append("text")
-    .attr("x", epiX).attr("y", groundY - 125).attr("text-anchor", "middle")
-    .attr("fill", "var(--accent-blue)").attr("font-size", 11).attr("font-weight", "bold")
-    .style("opacity", 0).text("P波");
+    .attr("x", epiX)
+    .attr("y", waveLabelY)
+    .attr("text-anchor", "middle")
+    .attr("fill", "var(--accent-blue)")
+    .attr("font-size", 11)
+    .attr("font-weight", "bold")
+    .style("opacity", 0)
+    .text("P波");
 
-  // S-wave bar (gold)
+  // S-wave bar (gold) - 从地下震源向上发出
   const sBar = svg.append("line")
-    .attr("x1", epiX).attr("y1", groundY - 100).attr("x2", epiX).attr("y2", groundY + 60)
-    .attr("stroke", "var(--highlight-gold)").attr("stroke-width", 3.5).attr("stroke-linecap", "round")
+    .attr("x1", epiX).attr("y1", sourceY).attr("x2", epiX).attr("y2", sourceY)
+    .attr("stroke", "var(--highlight-gold)")
+    .attr("stroke-width", 3.5)
+    .attr("stroke-linecap", "round")
     .style("opacity", 0);
 
   const sLabel = svg.append("text")
-    .attr("x", epiX).attr("y", groundY - 110).attr("text-anchor", "middle")
-    .attr("fill", "var(--highlight-gold)").attr("font-size", 11).attr("font-weight", "bold")
-    .style("opacity", 0).text("S波");
+    .attr("x", epiX)
+    .attr("y", waveLabelY)
+    .attr("text-anchor", "middle")
+    .attr("fill", "var(--highlight-gold)")
+    .attr("font-size", 11)
+    .attr("font-weight", "bold")
+    .style("opacity", 0)
+    .text("S波");
+
 
   // ---- Info annotation area (top right) ----
   const infoBox = svg.append("g").style("opacity", 0);
@@ -178,7 +237,7 @@ export function initCh4Architecture() {
     .text("模拟地震发生");
 
   // ---- Legend below ----
-  svg.append("text").attr("x", 70).attr("y", H - 12)
+  svg.append("text").attr("x", 70).attr("y", H - 5)
     .attr("fill", "var(--text-main)").attr("font-size", 10).attr("opacity", 0.5)
     .text("基于真实波速比例：P波 ≈ 6 km/s | S波 ≈ 3.5 km/s | 时间尺度按可视化需要压缩");
 
@@ -193,8 +252,8 @@ export function initCh4Architecture() {
     pWaveX = epiX; sWaveX = epiX;
     pBar.style("opacity", 1).attr("x1", epiX).attr("x2", epiX);
     sBar.style("opacity", 1).attr("x1", epiX).attr("x2", epiX);
-    pLabel.style("opacity", 1).attr("x", epiX);
-    sLabel.style("opacity", 1).attr("x", epiX);
+    pLabel.style("opacity", 1).attr("x", epiX).attr("y", waveLabelY);
+    sLabel.style("opacity", 1).attr("x", epiX).attr("y", waveLabelY);
     infoBox.style("opacity", 1);
 
     cityGroups.forEach(c => {
@@ -213,10 +272,23 @@ export function initCh4Architecture() {
       pWaveX += pSpeed * dt;
       sWaveX += sSpeed * dt;
 
-      pBar.attr("x1", epiX).attr("x2", pWaveX);
-      pLabel.attr("x", pWaveX - 14);
-      sBar.attr("x1", epiX).attr("x2", sWaveX);
-      sLabel.attr("x", sWaveX - 14);
+      pBar
+        .attr("x1", epiX).attr("y1", sourceY)
+        .attr("x2", pWaveX).attr("y2", groundY);
+
+      pLabel
+        .attr("x", pWaveX - 14)
+        .attr("y", waveLabelY);
+
+      sBar
+        .attr("x1", epiX).attr("y1", sourceY)
+        .attr("x2", sWaveX).attr("y2", groundY);
+
+      sLabel
+        .attr("x", sWaveX - 14)
+        .attr("y", waveLabelY);
+
+
 
       // Check city intersections
       cityGroups.forEach(c => {

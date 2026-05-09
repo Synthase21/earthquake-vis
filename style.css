@@ -316,13 +316,14 @@ p {
   text-align: justify;
 }
 
-/* 复制 .narrow-copy */
+/* Ch2 正文容器：左右边缘对齐 Ch1 */
 #ch2-intensity .ch2-narrow-copy {
-  width: min(920px, 100%);
-  max-width: 920px;
+  width: min(70vw, 100%);
+  max-width: none;
   margin: 0 auto 2rem;
   text-align: center;
 }
+
 
 
 /* Ch2 章节标题：对齐第一章 .chapter-title */
@@ -1065,13 +1066,14 @@ p {
   text-align: justify;
 }
 
-/* Ch3 正文容器：对齐 Ch1 */
+/* Ch3 标题容器：左右边缘对齐 Ch1 */
 #ch3-global-data .ch3-narrow-copy {
-  width: min(920px, 100%);
-  max-width: 920px;
+  width: min(70vw, 100%);
+  max-width: none;
   margin: 0 auto 2rem;
   text-align: center;
 }
+
 
 /* Ch3 章节标题：对齐 Ch1 .chapter-title */
 #ch3-global-data .ch3-eyebrow {
@@ -1299,8 +1301,10 @@ p {
 }
 
 
+/* Ch3 正文段落容器：左右边缘对齐 Ch1 */
 #ch3-global-data .ch3-a2-narrative {
-  max-width: 920px;
+  width: min(70vw, 100%);
+  max-width: none;
   margin: 0 auto 2rem;
 
   font-family: "SimSun", "STSong", serif;
@@ -1309,6 +1313,7 @@ p {
   line-height: 1.8;
   font-weight: 400;
 }
+
 
 #ch3-global-data .ch3-a2-narrative p {
   color: var(--ch3-text-main);
@@ -1837,3 +1842,43 @@ body > #ch3-a2-tooltip.ch3-a2-tooltip {
 .stickman:hover { filter: drop-shadow(0 0 5px var(--highlight-gold)); }
 
 .zone rect:first-child { transition: fill 0.3s ease, stroke 0.3s ease; }
+
+/* =============================================
+   仅压缩 Ch4 内部各部分间距
+   ============================================= */
+
+/* Ch4 各 section 不再强制占满一整屏 */
+#ch4-intro,
+#ch4-earlywarning,
+#ch4-evacuation,
+#ch4-conclusion {
+  min-height: auto;
+  justify-content: flex-start;
+  padding-top: clamp(28px, 4vw, 56px);
+  padding-bottom: clamp(28px, 4vw, 56px);
+}
+
+/* Ch4 段落间距稍微收紧 */
+#ch4-intro p,
+#ch4-earlywarning p,
+#ch4-evacuation p,
+#ch4-conclusion p {
+  margin-bottom: 1rem;
+}
+
+/* Ch4 模块标题和正文之间距离收紧 */
+.ch4-module-title {
+  margin: 0.8rem 0 0.45rem;
+}
+
+/* 提示语和可视化模块之间距离收紧 */
+#ch4-earlywarning .click-hint,
+#ch4-evacuation .click-hint {
+  margin-bottom: 0.6rem;
+}
+
+/* 两个 Ch4 可视化模块上下留白收紧 */
+#ch4-earlywarning-viz,
+#ch4-evacuation-viz {
+  margin: 1rem auto 1.2rem;
+}

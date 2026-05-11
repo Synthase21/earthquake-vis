@@ -5,7 +5,7 @@ node_modules
 .vite
 dist
 # Claude AI files
-.claude
+.claude/
 # OS files
 .DS_Store
 Thumbs.db

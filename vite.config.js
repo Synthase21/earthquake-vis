@@ -1,10 +1,17 @@
 import { defineConfig } from 'vite'
+import { resolve } from 'path'
 
 export default defineConfig({
-  // 必须写这个，否则部署后找不到引用的 CSS 和 JS 文件
-  base: './', 
+  base: './',
   build: {
-    outDir: 'docs', // 把输出目录设为 docs
-    emptyOutDir: true
+    outDir: 'docs',
+    emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        // 确保这里指向的是你修改后的那个根目录下的文件
+        doc: resolve(__dirname, 'doc.html') 
+      }
+    }
   }
 })
